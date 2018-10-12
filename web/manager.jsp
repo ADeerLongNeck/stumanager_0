@@ -30,6 +30,9 @@
 </head>
 
 <body>
+
+
+
 <div id="wrapper">
     <nav class="navbar navbar-default top-navbar" role="navigation">
         <div class="navbar-header">
@@ -142,7 +145,7 @@
                                         for (Student item : list) {
                                             //  System.out.println(item.toString());
                                             out.print(" <tr>\n" +
-                                                    "                                        <td><a href=\"mamger_table_stu_info.html\">"+item.getSno()+"</a></td>\n" +
+                                                    "                                        <td><a href=\"manager_table_stu_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
                                                     "                                        <td>"+item.getSname()+"</td>\n" +
                                                     "                                        <td>"+item.getSxy()+"</td>\n" +
                                                     "                                        <td>"+item.getSzy()+"</td>\n" +
@@ -157,6 +160,7 @@
                             </div>
                         </div>
                     </div>
+                    <a href="http://localhost:8080/addstu.jsp" class="btn btn-primary">添加学生</a>
                     <!-- End  Kitchen Sink -->
                 </div>
             </div>
