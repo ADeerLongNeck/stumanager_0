@@ -40,16 +40,15 @@
     </delete>
 
     <update id="updateStudent" parameterType="domain.Student">
-        update
+        update stuinfo
         <trim prefix="SET" prefixOverrides=",">
-            <if test="sno != null">,Sno = #{sno}</if>
             <if test="sname != null">,Sname = #{sname}</if>
             <if test="szy != null">,Szy = #{szy}</if>
             <if test="sxy != null">,Sxy = #{sxy}</if>
-            <if test="csdate != null">,Csdate = #{csdate,jdbcType=DATE}</if>
+            <if test="csdate != null">,Csdate = #{csdate}</if>
             <if test="rxdate != null">, Rxdate = #{rxdate}</if>
             <if test="bydate != null">,Bydate = #{bydate}</if>
-            <if test="zzmm != null">, Zzmm = #{zmm}</if>
+            <if test="zzmm != null">, Zzmm = #{zzmm}</if>
             <if test="mz != null">, Mz = #{mz}</if>
             <if test="jhr != null">,Jhr = #{jhr}</if>
             <if test="sex != null">,Sex = #{sex}</if>

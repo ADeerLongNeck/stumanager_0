@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.XiuXueDao">
+
+    <sql id="select">
+        select xxno,sno,sname,sqyy,sqdate,fxdate,shzt,shr,shbz from xiuxue
+    </sql>
+
+
+    <insert id="add" parameterType="domain.XiuXue">
+        insert into xiuxue (xxno,sno,sname,sqyy,sqdate,fxdate,shzt,shr,shbz) values (#{xxno},#{sno},#{sname},#{sqyy}
+        ,#{sqdate},#{fxdate},#{shzt},#{shr},#{shbz})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete from xiuxue where sno = #{sno}
+    </delete>
+
+    <update id="update" parameterType="domain.XiuXue">
+        update xiuxue<trim prefix="SET" prefixOverrides=",">
+        <if test="sno != null">,sno = #{sno}</if>
+        <if test="sname != null">,sname = #{sname}</if>
+        <if test="sqyy != null">,sqyy = #{sqyy}</if>
+        <if test="sqdate != null">,sqdate = #{sqdate}</if>
+        <if test="fxdate != null">,fxdate = #{fxdate}</if>
+        <if test="shzt != null">,shzt = #{shzt}</if>
+        <if test="shr != null">,shr = #{shr}</if>
+        <if test="shbz != null">,shbz = #{shbz}</if>
+    </trim> where sno = #{sno}
+    </update>
+
+    <select id="getAll" resultType="domain.XiuXue">
+        <include refid="select"/>
+    </select>
+
+    <select id="get" parameterType="int" resultType="domain.XiuXue">
+        <include refid="select"/>where sno = #{sno}
+    </select>
+</mapper>

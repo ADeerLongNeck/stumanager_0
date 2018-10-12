@@ -24,7 +24,7 @@
     </delete>
 
     <update id="updateTea" parameterType="domain.Teacher">
-        update <trim prefix="SET" prefixOverrides=",">
+        update teacherinfo<trim prefix="SET" prefixOverrides=",">
         <if test="tno != null">,tno = #{tno}</if>
         <if test="tname != null">,tname = #{tname}</if>
         <if test="ssxy != null">,ssxy = #{ssxy}</if>
