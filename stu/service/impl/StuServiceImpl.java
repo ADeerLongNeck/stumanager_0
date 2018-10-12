@@ -20,6 +20,7 @@ public class StuServiceImpl implements StuService {
     @Override
     public void addStudent(Student student) {
         stuDao.addStudent(student);
+        sqlSession.commit();
     }
 
     @Override
@@ -31,12 +32,16 @@ public class StuServiceImpl implements StuService {
 
     @Override
     public void deleteStudent(Student student) {
+
         stuDao.deleteStudent(student);
+        sqlSession.commit();
     }
 
     @Override
     public void updateStudent(Student student) {
+
         stuDao.updateStudent(student);
+        sqlSession.commit();
     }
 
     @Override

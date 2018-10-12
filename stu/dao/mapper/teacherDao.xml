@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.TeaDao">
+
+    <sql id="select">
+        select tno,tname,ssxy from teacherinfo
+    </sql>
+
+    <sql id="condition" >
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="tno != null">and tno = #{tno}</if>
+            <if test="tname != null">and tname = #{tname}</if>
+            <if test="ssxy != null">and ssxy = #{ssxy}</if>
+        </trim>
+    </sql >
+
+
+    <insert id="addTea" parameterType="domain.Teacher">
+        insert into teacherinfo (tno,tname,ssxy) values (#{tno},#{tname},#{ssxy})
+    </insert>
+
+    <delete id="deleteTea" parameterType="int">
+        delete from teacherinfo where tno = #{tno}
+    </delete>
+
+    <update id="updateTea" parameterType="domain.Teacher">
+        update <trim prefix="SET" prefixOverrides=",">
+        <if test="tno != null">,tno = #{tno}</if>
+        <if test="tname != null">,tname = #{tname}</if>
+        <if test="ssxy != null">,ssxy = #{ssxy}</if>
+    </trim>
+    </update>
+
+    <select id="getAllTea" resultType="domain.Teacher">
+        <include refid="select"/>
+    </select>
+
+    <select id="getTea" parameterType="int" resultType="domain.Teacher">
+        <include refid="select"/>where tno = #{tno}
+    </select>
+</mapper>

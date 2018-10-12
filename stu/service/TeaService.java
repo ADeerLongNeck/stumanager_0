@@ -1,19 +1,19 @@
-package dao;
+package service;
 
 import domain.Teacher;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface TeaDao {
+public interface TeaService {
 
     void addTea(Teacher teacher);
 
-    void deleteTea(@Param("tno") int tno);
+    void deleteTea(int tno);
 
     void updateTea(Teacher teacher);
 
     List<Teacher> getAllTea();
 
-    Teacher getTea(@Param("tno") int tno);
+    Teacher getTea(int tno);
 }
