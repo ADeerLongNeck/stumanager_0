@@ -17,6 +17,8 @@
     <mappers>
         <mapper resource="dao/mapper/studentDao.xml"/>
         <mapper resource="dao/mapper/teacherDao.xml"/>
+        <mapper resource="dao/mapper/xiuxueDao.xml"/>
+        <mapper resource="dao/mapper/fuxueDao.xml"/>
     </mappers>
 
 

@@ -1,10 +1,13 @@
+import domain.FuXue;
 import domain.Student;
 import domain.Teacher;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import service.FuXueService;
 import service.StuService;
 import service.TeaService;
+import service.impl.FuXueServiceImpl;
 import service.impl.StuServiceImpl;
 import service.impl.TeaServiceImpl;
 
@@ -18,8 +21,8 @@ public class test {
 
     public static void main(String[] args){
 //        Student student = new Student();
-//        student.setSname("jc3");
-//        student.setSno(123);
+//        student.setSname("jc333");
+//        student.setSno(2);
 //        student.setBydate("123");
 //        student.setCsdate("2018");
 //        student.setExtra("无");
@@ -34,13 +37,9 @@ public class test {
 //        student.setSxy("信息学院");
 //        student.setSzy("计算机");
 //        StuService stuService = new StuServiceImpl();
-//        stuService.addStudent(student);
-//        List list = stuService.getStudent();
-//        for (Object item : list) {
-//            System.out.println(item.toString());
-//        }
+//        stuService.updateStudent(student);
 
-        TeaService service = new TeaServiceImpl();
+        /*TeaService service = new TeaServiceImpl();
         Teacher teacher = new Teacher();
         teacher.setTno(111);
         teacher.setSsxy("66");
@@ -49,7 +48,15 @@ public class test {
         Teacher teacher1 ;
         teacher1= service.getTea(111);
         System.out.println(teacher1.getTname());
-        System.out.println(teacher1.getSsxy());
+        System.out.println(teacher1.getSsxy());*/
+
+        FuXue fuXue = new FuXue();
+        fuXue.setSno(132);
+        fuXue.setSqdate("2016");
+        fuXue.setShzt("审核通过");
+        FuXueService service = new FuXueServiceImpl();
+        service.applyFuXue(fuXue);
+        service.delete(154);
     }
 
 }
