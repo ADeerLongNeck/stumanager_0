@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.StuDao">
+
+    <sql id="select">
+        select Sno,Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra from stuinfo
+    </sql>
+
+    <sql id="QUERY_WHERE_CLAUSE">
+        <trim prefix="WHERE" prefixOverrides="and ">
+          <if test="sno != null">and Sno = #{sno}</if>
+          <if test="sname != null">and Sname = #{sname}</if>
+          <if test="szy != null">and Szy = #{szy}</if>
+          <if test="sxy != null">and Sxy = #{sxy}</if>
+          <if test="csdate != null">and Csdate = #{csdate,jdbcType=DATE}</if>
+          <if test="rxdate != null">and Rxdate = #{rxdate}</if>
+            <if test="bydate != null">and Bydate = #{bydate}</if>
+            <if test="zzmm != null">and Zzmm = #{zmm}</if>
+            <if test="mz != null">and Mz = #{mz}</if>
+            <if test="jhr != null">and Jhr = #{jhr}</if>
+            <if test="sex != null">and Sex = #{sex}</if>
+            <if test="sfzno != null">and Sfzno = #{sfzno}</if>
+            <if test="phone != null">and Phone = #{phone}</if>
+            <if test="extra != null">and Extra = #{extra}</if>
+        </trim>
+
+    </sql>
+
+    <insert id="addStudent" parameterType="domain.Student">
+        insert into stuinfo (Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra) values (#{sname},#{szy},#{sxy}
+        ,#{csdate},#{rxdate},#{bydate},#{zzmm},#{jtzz},#{mz},#{jhr},#{sex},#{sfzno},#{phone},#{extra})
+    </insert>
+
+    <select id="getStudent" resultType="domain.Student">
+        <include refid="select"/>
+    </select>
+
+    <delete id="deleteStudent" parameterType="domain.Student">
+        delete from stuinfo where Sno = #{sno}
+    </delete>
+
+    <update id="updateStudent" parameterType="domain.Student">
+        update
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="sno != null">,Sno = #{sno}</if>
+            <if test="sname != null">,Sname = #{sname}</if>
+            <if test="szy != null">,Szy = #{szy}</if>
+            <if test="sxy != null">,Sxy = #{sxy}</if>
+            <if test="csdate != null">,Csdate = #{csdate,jdbcType=DATE}</if>
+            <if test="rxdate != null">, Rxdate = #{rxdate}</if>
+            <if test="bydate != null">,Bydate = #{bydate}</if>
+            <if test="zzmm != null">, Zzmm = #{zmm}</if>
+            <if test="mz != null">, Mz = #{mz}</if>
+            <if test="jhr != null">,Jhr = #{jhr}</if>
+            <if test="sex != null">,Sex = #{sex}</if>
+            <if test="sfzno != null">,Sfzno = #{sfzno}</if>
+            <if test="phone != null">, Phone = #{phone}</if>
+            <if test="extra != null">,Extra = #{extra}</if>
+        </trim>
+        where Sno = #{sno}
+    </update>
+
+    <select id="getSingleStudent" parameterType="int" resultType="domain.Student">
+        <include refid="select"/> where Sno = #{sno}
+    </select>
+
+</mapper>
