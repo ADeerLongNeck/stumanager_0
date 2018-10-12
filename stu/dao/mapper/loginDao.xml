@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.LoginDao">
+
+    <sql id="select">
+        select Id,Pwd,Sf from userinfo
+    </sql>
+
+
+    <insert id="register" parameterType="domain.Teacher">
+        insert into userinfo (Id,Pwd,Sf) values (#{Id},#{Pwd},#{Sf})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete from userinfo where Id = #{Id}
+    </delete>
+
+    <update id="update" parameterType="domain.User">
+        update userinfo<trim prefix="SET" prefixOverrides=",">
+        <if test="Id != null">,Id = #{id}</if>
+        <if test="Pwd != null">,Pwd = #{pwd}</if>
+        <if test="Sf != null">,Sf = #{sf}</if>
+    </trim>
+    </update>
+
+    <select id="getAll" resultType="domain.User">
+        <include refid="select"/>
+    </select>
+
+    <select id="login" parameterType="int" resultType="java.lang.String">
+        select Pwd from userinfo where Id = #{Id}
+    </select>
+</mapper>

@@ -29,4 +29,13 @@ public class User {
     public void setSf(String sf) {
         this.sf = sf;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", pwd='" + pwd + '\'' +
+                ", sf='" + sf + '\'' +
+                '}';
+    }
 }

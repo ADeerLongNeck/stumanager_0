@@ -1,15 +1,15 @@
-package dao;
+package service;
 
 import domain.User;
 import org.apache.ibatis.annotations.Param;
 
-public interface LoginDao {
+public interface LoginService {
 
-    String login(@Param("Id") int id);
+    boolean login(User user);
 
     void register(User user);
 
-    void delete(@Param("Id") int id);
+    void delete(int id);
 
     void update(User user);
 }

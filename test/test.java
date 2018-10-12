@@ -50,13 +50,34 @@ public class test {
         System.out.println(teacher1.getTname());
         System.out.println(teacher1.getSsxy());*/
 
-        FuXue fuXue = new FuXue();
-        fuXue.setSno(132);
-        fuXue.setSqdate("2016");
-        fuXue.setShzt("审核通过");
-        FuXueService service = new FuXueServiceImpl();
-        service.applyFuXue(fuXue);
-        service.delete(154);
+//        FuXue fuXue = new FuXue();
+//        fuXue.setSno(132);
+//        fuXue.setSqdate("2016");
+//        fuXue.setShzt("审核通过");
+//        FuXueService service = new FuXueServiceImpl();
+//        service.applyFuXue(fuXue);
+//        service.delete(154);
+
+        /*StuService stuService = new StuServiceImpl();
+        List<Student> list = stuService.getStudent();
+        for (Student item : list) {
+            //  System.out.println(item.toString());
+            System.out.print(" <tr>\n" +
+                    "                                        <td><a href=\"mamger_table_stu_info.html\">"+item.getSno()+"</a></td>\n" +
+                    "                                        <td>"+item.getSname()+"</td>\n" +
+                    "                                        <td>"+item.getSxy()+"</td>\n" +
+                    "                                        <td>"+item.getSzy()+"</td>\n" +
+                    "                                    </tr>");
+
+        }*/
+
+//        Student student = new Student();
+//        student.setMz("汉");
+//        student.setSno(2);
+//        StuService stuService = new StuServiceImpl();
+//        stuService.updateStudent(student);
+
+
     }
 
 }
