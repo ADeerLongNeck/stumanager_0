@@ -17,4 +17,6 @@ public interface StuDao {
 
     Student getSingleStudent(@Param("sno") int sno);
 
+    void dengji(@Param("sno") int sno);
+
 }

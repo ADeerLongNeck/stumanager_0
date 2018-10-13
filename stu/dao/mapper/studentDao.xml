@@ -63,4 +63,8 @@
         <include refid="select"/> where Sno = #{sno}
     </select>
 
+    <update id="dengji" parameterType="int">
+        update stuinfo set djzt = '已登记' where Sno = #{sno}
+    </update>
+
 </mapper>

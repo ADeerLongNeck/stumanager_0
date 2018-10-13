@@ -81,7 +81,9 @@
                     <a href="student_jiangji.jsp"><i class="fa fa-table"></i>降级管理</a>
                 </li>
 
-
+                <li>
+                    <a  href="ruxue.jsp"><i class="fa fa-bar-chart-o"></i>入学登记</a>
+                </li>
 
 
             </ul>
@@ -132,9 +134,9 @@
                                     </thead>
                                     <tbody>
                                     <%
-
+                                        int sno = (int) session.getAttribute("sno");
                                         FuXueService fuXueService = new FuXueServiceImpl();
-                                        FuXue item = fuXueService.get(1);
+                                        FuXue item = fuXueService.get(sno);
 if(item!=null){
 
     //  System.out.println(item.toString());
@@ -157,7 +159,7 @@ if(item!=null){
                     <%
 
                         FuXueService jiangjiService2 = new FuXueServiceImpl();
-                        FuXue item2 = jiangjiService2.get(1);
+                        FuXue item2 = jiangjiService2.get(sno);
                         if (item2==null){
                             out.print("   <a href=\"http://localhost:8080/student_table_fuxue_info.jsp?sno=1\" class=\"btn btn-primary\">申请降级</a>");
                         }

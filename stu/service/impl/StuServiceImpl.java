@@ -55,4 +55,10 @@ public class StuServiceImpl implements StuService {
     public Student getSingleStudent(int sno) {
         return stuDao.getSingleStudent(sno);
     }
+
+    @Override
+    public void dengji(int sno) {
+        stuDao.dengji(sno);
+        sqlSession.commit();
+    }
 }

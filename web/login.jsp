@@ -17,7 +17,7 @@
     if (request.getMethod().equals("POST")){
         LoginService loginService = new LoginServiceImpl();
         if(loginService.login(user1)&&user1.getSf().equals("1")){
-
+            session.setAttribute("sno",user1.getId());
             response.sendRedirect("student_xiuxue.jsp");
         }
         if(loginService.login(user1)&&user1.getSf().equals("2")){

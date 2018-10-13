@@ -1,6 +1,7 @@
 package service;
 
 import domain.Student;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface StuService {
     void updateStudent(Student student);
 
     Student getSingleStudent(int sno);
+
+    void dengji(int sno);
 }

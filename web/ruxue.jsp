@@ -1,11 +1,8 @@
-<%@ page import="service.XiuXueService" %>
-<%@ page import="service.impl.XiuXueServiceImpl" %>
-<%@ page import="domain.XiuXue" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Li
   Date: 2018/10/13 0013
-  Time: 1:16
+  Time: 16:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,7 +12,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>学生</title>
+    <title>管理员后台</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -68,17 +65,18 @@
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu"    href="student_xiuxue.jsp"><i class="fa fa-bar-chart-o"></i>休学管理</a>
+                    <a  href="student_xiuxue.jsp"><i class="fa fa-bar-chart-o"></i>休学管理</a>
                 </li>
                 <li>
-                    <a href="student_fuxue.jsp"><i class="fa fa-qrcode"></i>复学管理</a>
+                    <a  href="student_fuxue.jsp"><i class="fa fa-qrcode"></i>复学管理</a>
                 </li>
 
                 <li>
-                    <a href="student_jiangji.jsp"><i class="fa fa-table"></i>降级管理</a>
+                    <a   href="student_jiangji.jsp"><i class="fa fa-table"></i>降级管理</a>
                 </li>
+
                 <li>
-                    <a  href="ruxue.jsp"><i class="fa fa-bar-chart-o"></i>入学登记</a>
+                    <a class="active-menu"  href="ruxue.jsp"><i class="fa fa-bar-chart-o"></i>入学登记</a>
                 </li>
 
 
@@ -97,75 +95,25 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="page-header">
-                        休学管理 <small>管理休学信息</small>
+                        入学登记 <small>入学登记</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">后台</a></li>
-                        <li class="active">全部休学信息</li>
+                        <li class="active">入学登记</li>
                     </ol>
                 </div>
             </div>
+              <% int sno = (int) session.getAttribute("sno"); %>
+              <a class="btn btn-success" href="dengji.jsp?id=<%=sno%>">入学登记</a>
 
 
             <!-- /. ROW
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div> -->
+
             <div class="row">
                 <div class="col-md-12">
                     <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            数据
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr>
 
-                                        <th>学号</th>
-                                        <th>学生</th>
-                                        <th>申请原因</th>
-                                        <th>审核状态</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <%
-
-                                        XiuXueService fuXueService = new XiuXueServiceImpl();
-                                        int sno = (int) session.getAttribute("sno");
-                                        XiuXue item = fuXueService.get(sno);
-                                        if(item!=null){
-
-                                            //  System.out.println(item.toString());
-                                            out.print(" <tr>\n" +
-                                                    "                                        <td><a >"+item.getSno()+"</a></td>\n" +
-                                                    "                                        <td>"+item.getSname()+"</td>\n" +
-                                                    "                                        <td>"+item.getSqyy()+"</td>\n" +
-                                                    "                                        <td>"+item.getShzt()+"</td>\n" +
-                                                    "                                    </tr>");
-                                        }
-
-
-                                    %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End  Kitchen Sink -->
-                    <%
-
-                        XiuXueService jiangjiService2 = new XiuXueServiceImpl();
-
-                        XiuXue item2 = jiangjiService2.get(sno);
-                        if (item2==null){
-                            out.print("   <a href=\"http://localhost:8080/student_table_xiuxue_info.jsp?sno=1\" class=\"btn btn-primary\">申请降级</a>");
-                        }
-
-
-                    %>
                 </div>
             </div>
             <!-- /. ROW  -->

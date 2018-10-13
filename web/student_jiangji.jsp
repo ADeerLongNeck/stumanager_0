@@ -82,6 +82,9 @@
                     <a class="active-menu"  href="student_jiangji.jsp"><i class="fa fa-table"></i>降级管理</a>
                 </li>
 
+                <li>
+                    <a  href="ruxue.jsp"><i class="fa fa-bar-chart-o"></i>入学登记</a>
+                </li>
 
 
 
@@ -133,9 +136,9 @@
                                     </thead>
                                     <tbody>
                                     <%
-
+                                        int sno = (int) session.getAttribute("sno");
                                         JiangjiService jiangjiService = new JiangjiServiceImpl();
-                                        Jiangji item = jiangjiService.get(1);
+                                        Jiangji item = jiangjiService.get(sno);
                                         if(item!=null){
                                             //  System.out.println(item.toString());
                                             out.print(" <tr>\n" +
@@ -158,7 +161,7 @@
             <%
 
                 JiangjiService jiangjiService2 = new JiangjiServiceImpl();
-                Jiangji item2 = jiangjiService.get(1);
+                Jiangji item2 = jiangjiService.get(sno);
                 if (item2==null){
                     out.print("   <a href=\"http://localhost:8080/student_table_jiangji_info.jsp?sno=1\" class=\"btn btn-primary\">申请降级</a>");
                 }
