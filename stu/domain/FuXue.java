@@ -9,7 +9,7 @@ public class FuXue {
     private String sqdate;
     private String fxdate;
     private String shzt;
-    private String shr;
+    private String shren;
     private String shbz;
 
     public int getFxno() {
@@ -68,12 +68,12 @@ public class FuXue {
         this.shzt = shzt;
     }
 
-    public String getShr() {
-        return shr;
+    public String getShren() {
+        return shren;
     }
 
-    public void setShr(String shr) {
-        this.shr = shr;
+    public void setShren(String shren) {
+        this.shren = shren;
     }
 
     public String getShbz() {
@@ -94,7 +94,7 @@ public class FuXue {
                 ", sqdate='" + sqdate + '\'' +
                 ", fxdate='" + fxdate + '\'' +
                 ", shzt='" + shzt + '\'' +
-                ", shr='" + shr + '\'' +
+                ", shren='" + shren + '\'' +
                 ", shbz='" + shbz + '\'' +
                 '}';
     }

@@ -1,21 +1,24 @@
 import domain.FuXue;
 import domain.Student;
 import domain.Teacher;
+import domain.XiuXue;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import service.FuXueService;
 import service.StuService;
 import service.TeaService;
+import service.XiuXueService;
 import service.impl.FuXueServiceImpl;
 import service.impl.StuServiceImpl;
 import service.impl.TeaServiceImpl;
+import service.impl.XiuXueServiceImpl;
 
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-import static javafx.scene.input.KeyCode.X;
+
 
 public class test {
 
@@ -76,7 +79,13 @@ public class test {
 //        student.setSno(2);
 //        StuService stuService = new StuServiceImpl();
 //        stuService.updateStudent(student);
+        XiuXue xiuXue = new XiuXue();
+        xiuXue.setSno(154);
+      xiuXue.setShbz("nima");
 
+
+        XiuXueService xiuXueService = new XiuXueServiceImpl();
+        xiuXueService.shenhe(xiuXue);
 
     }
 

@@ -11,7 +11,7 @@ public class XiuXue {
     private String sqdate;
     private String fxdate;
     private String shzt;
-    private String shr;
+    private String shren;
     private String shbz;
 
     public int getXxno() {
@@ -70,12 +70,12 @@ public class XiuXue {
         this.shzt = shzt;
     }
 
-    public String getShr() {
-        return shr;
+    public String getShren() {
+        return shren;
     }
 
-    public void setShr(String shr) {
-        this.shr = shr;
+    public void setShren(String shren) {
+        this.shren = shren;
     }
 
     public String getShbz() {
@@ -96,7 +96,7 @@ public class XiuXue {
                 ", sqdate='" + sqdate + '\'' +
                 ", fxdate='" + fxdate + '\'' +
                 ", shzt='" + shzt + '\'' +
-                ", shr='" + shr + '\'' +
+                ", shren='" + shren + '\'' +
                 ", shbz='" + shbz + '\'' +
                 '}';
     }

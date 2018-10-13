@@ -19,6 +19,7 @@ public class JiangjiServiceImpl implements JiangjiService {
     @Override
     public void applyJiangji(Jiangji jiangji) {
         jiangjiDao.add(jiangji);
+        sqlSession.commit();
     }
 
     @Override

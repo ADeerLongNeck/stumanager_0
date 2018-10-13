@@ -1,8 +1,8 @@
 package service.impl;
 
-import dao.GetSessionFactory;
-import dao.JiangjiDao;
-import dao.LoginDao;
+import dao.*;
+import domain.Student;
+import domain.Teacher;
 import domain.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,6 +13,8 @@ public class LoginServiceImpl implements LoginService {
     SqlSessionFactory sqlSessionFactory = GetSessionFactory.getSqlSessionFactory();
     SqlSession sqlSession = sqlSessionFactory.openSession();
     LoginDao loginDao = sqlSession.getMapper(LoginDao.class);
+    StuDao stuDao = sqlSession.getMapper(StuDao.class);
+    TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
     @Override
     public boolean login(User user) {
@@ -24,6 +26,16 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public void register(User user) {
         loginDao.register(user);
+        if (user.getSf().equals("1")){
+            Student student = new Student();
+            student.setSno(user.getId());
+            stuDao.addStudent(student);
+        }else if (user.getSf().equals("2")){
+            Teacher teacher = new Teacher();
+            teacher.setTno(user.getId());
+            teaDao.addTea(teacher);
+        }
+
         sqlSession.commit();
     }
 

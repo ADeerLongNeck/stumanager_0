@@ -1,20 +1,22 @@
-<%@ page import="service.StuService" %>
-<%@ page import="service.impl.StuServiceImpl" %>
-<%@ page import="domain.Student" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="domain.XiuXue" %>
+<%@ page import="service.XiuXueService" %>
+<%@ page import="service.impl.XiuXueServiceImpl" %>
+<%@ page import="domain.FuXue" %>
+<%@ page import="service.FuXueService" %>
+<%@ page import="service.impl.FuXueServiceImpl" %>
+<%@ page import="domain.Jiangji" %>
+<%@ page import="service.JiangjiService" %>
+<%@ page import="service.impl.JiangjiServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: Li
-  Date: 2018/10/12 0012
-  Time: 20:32
+  Date: 2018/10/13 0013
+  Time: 1:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% response.setContentType("text/html;charset=UTF-8");
     request.setCharacterEncoding("utf-8");
 %>
-
-
-
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,28 +41,43 @@
 <body>
 
 
-<jsp:useBean id="stu" class="domain.Student"/>
-<jsp:setProperty name="stu"   property="*"/>
-<%
-   // out.print("=================="+stu.getSname());
+<jsp:useBean id="fu" class="domain.Jiangji"/>
+<jsp:setProperty name="fu"   property="*"/>
+<%!
+    Jiangji jiangji;
 
-if (request.getMethod().equals("POST")){
-    StuService stuService = new StuServiceImpl();
-    if (stu!=null){
-        stuService.addStudent(stu);
-        out.println("<script>\n" +
-                "    alert(\""+stu.getSname()+"同学的信息添加成功！\");\n" +
-                "</script>");
+    public Jiangji getData(int sno){
+
+        JiangjiService fuXueService = new JiangjiServiceImpl();
+        Jiangji fuXue=fuXueService.get(sno);
+
+        return fuXue;
     }
+    public void pp(){
+        System.out.println("222222222222222222222222222222222222");
+    }
+%>
 
-}
+<%
+    if (request.getMethod().equals("POST")){
+        request.setCharacterEncoding("utf-8");
+        JiangjiService fuXueService = new JiangjiServiceImpl();
+        if (fu!=null){
+           fuXueService.shenhe(fu);
+
+        }
+        //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
+        response.sendRedirect("teacher_table_jiangji_info.jsp?sno="+fu.getSno());
+
+    }else{
+        request.setCharacterEncoding("utf-8");
+        int sno = Integer.parseInt(request.getParameter("sno"));
+       jiangji = getData(sno);
+
+    }
 
 
 %>
-
-
-
-
 <div id="wrapper">
     <nav class="navbar navbar-default top-navbar" role="navigation">
         <div class="navbar-header">
@@ -97,14 +114,16 @@ if (request.getMethod().equals("POST")){
         <div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
-
                 <li>
-                    <a  class="active-menu"  href="manager.jsp"><i class="fa fa-dashboard"></i> 学生信息</a>
+                    <a   href="teacher_xiuxue.jsp"><i class="fa fa-bar-chart-o"></i>休学管理</a>
                 </li>
                 <li>
-                    <a  href="manager_teacher.jsp"><i class="fa fa-desktop"></i> 教师信息</a>
+                    <a  href="teacher_fuxue.jsp"><i class="fa fa-qrcode"></i>复学管理</a>
                 </li>
 
+                <li>
+                    <a class="active-menu" href="teacher_jiangji.jsp"><i class="fa fa-table"></i>降级管理</a>
+                </li>
 
 
 
@@ -121,13 +140,13 @@ if (request.getMethod().equals("POST")){
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="page-header">
-                        学生信息 <small>添加学生信息</small>
+                        降级管理 <small>管理降级信息</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">后台</a></li>
-                        <li><a href="#">全部学生信息</a></li>
-                        <li class="active">添加学生信息</li>
+                        <li><a href="#">全部降级信息</a></li>
+                        <li class="active">具体信息</li>
 
                     </ol>
                 </div>
@@ -144,85 +163,39 @@ if (request.getMethod().equals("POST")){
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="addstu.jsp" method="post">
+                                    <form role="form" action="teacher_table_jiangji_info.jsp" method="post">
+
+
 
                                         <div class="form-group">
                                             <label>学号</label>
-                                            <input id="sno" name="sno" class="form-control">
+                                            <input id="sno" name="sno" class="form-control"  value="<%= jiangji.getSno() %>">
 
                                         </div>
+
                                         <div class="form-group">
                                             <label>学生姓名</label>
-                                            <input id="sname" name="sname"  class="form-control">
+                                            <input id="sname"  name="sname" class="form-control"  value="<%= jiangji.getSname() %>">
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>审核人</label>
+                                            <input id="shren"  name="shren" class="form-control"  value="<%= jiangji.getShren() %>">
 
                                         </div>
                                         <div class="form-group">
-                                            <label>专业</label>
-                                            <input id="szy"  name="szy" class="form-control">
+                                            <label>审核人备注</label>
+                                            <input id="shbz"  name="shbz" class="form-control"  value="<%= jiangji.getShbz() %>">
 
                                         </div>
                                         <div class="form-group">
-                                            <label>学院</label>
-                                            <input id="sxy"  name="sxy" class="form-control">
+                                            <label>审核状态</label>
+                                            <input id="shzt"  name="shzt" class="form-control"  value="<%= jiangji.getShzt() %>">
 
                                         </div>
-                                        <div class="form-group">
-                                            <label>出生年月日</label>
-                                            <input id="csdate" name="csdate"  class="form-control">
 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>入学年份</label>
-                                            <input id="rxdate" name="rxdate"  class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>毕业年份</label>
-                                            <input id="bydate" name="bydate"  class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>政治面貌</label>
-                                            <input id="zzmm" name="zzmm"  class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>家庭住址</label>
-                                            <input id="jtzz"  name="jtzz" class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>民族</label>
-                                            <input id="mz"  name="mz" class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>监护人及联系方式</label>
-                                            <input id="jhr"  name="jhr" class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>性别</label>
-                                            <input id="sex"  name="sex" class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>身份证号</label>
-                                            <input id="sfzno" name="sfzno"  class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>联系方式</label>
-                                            <input id="phone" name="phone"  class="form-control">
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label>备注</label>
-                                            <input id="extra"  name="extra" class="form-control">
-
-                                        </div>
-                                        <BUTTON type="submit"  class="btn btn-primary">添加</BUTTON>
-
+                                        <button  type="submit" class="btn btn-primary">保存</button>
 
                                     </form>
                                 </div>

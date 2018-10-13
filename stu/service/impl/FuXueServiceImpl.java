@@ -27,9 +27,6 @@ public class FuXueServiceImpl implements FuXueService {
     @Override
     public void shenhe(FuXue fuXue) {
         fuXueDao.update(fuXue);
-        if (fuXue.getShzt().equals("同意复学")){
-            xiuXueDao.delete(fuXue.getSno());
-        }
         sqlSession.commit();
     }
 
@@ -46,5 +43,6 @@ public class FuXueServiceImpl implements FuXueService {
     @Override
     public void delete(int fxno) {
         fuXueDao.delete(fxno);
+        sqlSession.commit();
     }
 }

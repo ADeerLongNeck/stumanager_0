@@ -1,14 +1,19 @@
-<%@ page import="service.StuService" %>
-<%@ page import="service.impl.StuServiceImpl" %>
-<%@ page import="java.util.List" %>
-<%@ page import="domain.Student" %><%--
+<%@ page import="domain.Teacher" %>
+<%@ page import="service.TeaService" %>
+<%@ page import="service.impl.TeaServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: Li
-  Date: 2018/10/12 0012
-  Time: 19:36
+  Date: 2018/10/13 0013
+  Time: 0:14
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
+<% response.setContentType("text/html;charset=UTF-8"); %>
+<%
+    request.setCharacterEncoding("utf-8");
+%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -30,6 +35,47 @@
 </head>
 
 <body>
+
+<jsp:useBean id="tea2" class="domain.Teacher"/>
+<jsp:setProperty name="tea2"   property="*"/>
+<%!
+    Teacher teacher;
+
+    public Teacher getData(int sno){
+
+        TeaService stuService = new TeaServiceImpl();
+        Teacher teacher=stuService.getTea(sno);
+
+        return teacher;
+    }
+    public void pp(){
+        System.out.println("222222222222222222222222222222222222");
+    }
+%>
+
+<%
+    if (request.getMethod().equals("POST")){
+        request.setCharacterEncoding("utf-8");
+        TeaService stuService = new TeaServiceImpl();
+        if (tea2!=null){
+            stuService.updateTea(tea2);
+            out.println("<script>\n" +
+                    "    alert(\""+tea2.getTname()+"老师的信息修改成功！\");\n" +
+                    "</script>");
+        }
+        //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
+        response.sendRedirect("manager_table_tea_info.jsp?sno="+tea2.getTno());
+
+    }else{
+        request.setCharacterEncoding("utf-8");
+        int sno = Integer.parseInt(request.getParameter("sno"));
+        teacher = getData(sno);
+
+    }
+
+
+%>
+
 
 
 
@@ -55,9 +101,6 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
 
-
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> 当前登陆：张三</a>
-                    </li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
                     </li>
@@ -73,13 +116,13 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
 
-                <li>
-                    <a class="active-menu" href="manager.jsp"><i class="fa fa-dashboard"></i> 学生信息</a>
-                </li>
-                <li>
-                    <a href="manager_teacher.jsp"><i class="fa fa-desktop"></i> 教师信息</a>
-                </li>
 
+                <li>
+                    <a href="manager.jsp"><i class="fa fa-dashboard"></i> 学生信息</a>
+                </li>
+                <li>
+                    <a  class="active-menu" href="manager_teacher.jsp"><i class="fa fa-desktop"></i> 教师信息</a>
+                </li>
 
 
 
@@ -97,63 +140,61 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="page-header">
-                        学生信息 <small>管理学生信息</small>
+                        教师信息 <small>管理教师信息</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">后台</a></li>
-                        <li class="active">全部学生信息</li>
+                        <li><a href="#">全部教师信息</a></li>
+                        <li class="active">具体信息</li>
+
                     </ol>
                 </div>
             </div>
 
 
-            <!-- /. ROW
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div> -->
+            <!-- /. ROW  -->
             <div class="row">
-                <div class="col-md-12">
-                    <!--   Kitchen Sink -->
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            数据
+                            具体信息
                         </div>
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>#学号</th>
-                                        <th>姓名</th>
-                                        <th>学院</th>
-                                        <th>专业</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <%
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form role="form" method="post" action="manager_table_tea_info.jsp">
 
-                                        StuService stuService = new StuServiceImpl();
-                                        List<Student> list = stuService.getStudent();
-                                        for (Student item : list) {
-                                            //  System.out.println(item.toString());
-                                            out.print(" <tr>\n" +
-                                                    "                                        <td><a href=\"manager_table_stu_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
-                                                    "                                        <td>"+item.getSname()+"</td>\n" +
-                                                    "                                        <td>"+item.getSxy()+"</td>\n" +
-                                                    "                                        <td>"+item.getSzy()+"</td>\n" +
-                                                    "                                    </tr>");
+                                        <div class="form-group">
+                                            <label>教师工号</label>
+                                            <input id="tno" name="tno" class="form-control" value="<%= teacher.getTno() %>">
 
-                                        }
-                                    %>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>姓名</label>
+                                            <input id="tname" name="tname" class="form-control" value="<%= teacher.getTname() %>">
 
+                                        </div>
 
-                                    </tbody>
-                                </table>
+                                        <div class="form-group">
+                                            <label>所属学院</label>
+                                            <input id="ssxy"  name="ssxy" class="form-control" value="<%= teacher.getSsxy() %>">
+
+                                        </div>
+
+                                        <BUTTON class="btn btn-primary" type="submit">保存</BUTTON>
+                                        <a class="btn btn-danger" href="del.jsp?no=<%=teacher.getTno()%>&table=tea">删除</a>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
                             </div>
+                            <!-- /.row (nested) -->
                         </div>
+                        <!-- /.panel-body -->
                     </div>
-                    <a href="http://localhost:8080/addstu.jsp" class="btn btn-primary">添加学生</a>
-                    <!-- End  Kitchen Sink -->
+                    <!-- /.panel -->
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /. ROW  -->
 

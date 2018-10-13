@@ -1,3 +1,9 @@
+<%@ page import="service.StuService" %>
+<%@ page import="service.impl.StuServiceImpl" %>
+<%@ page import="java.util.List" %>
+<%@ page import="domain.Student" %>
+
+
 <%--
   Created by IntelliJ IDEA.
   User: Li
@@ -9,8 +15,21 @@
 <html>
   <head>
     <title>$Title$</title>
+    <%
+
+    %>
   </head>
   <body>
-  $END$----
+   <%
+
+       StuService stuService = new StuServiceImpl();
+       List<Student> list = stuService.getStudent();
+       for (Student item : list) {
+         //  System.out.println(item.toString());
+           out.print(item.getSname());
+
+       }
+   %>
+
   </body>
 </html>

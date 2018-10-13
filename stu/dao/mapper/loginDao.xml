@@ -7,8 +7,8 @@
     </sql>
 
 
-    <insert id="register" parameterType="domain.Teacher">
-        insert into userinfo (Id,Pwd,Sf) values (#{Id},#{Pwd},#{Sf})
+    <insert id="register" parameterType="domain.User">
+        insert into userinfo (Id,Pwd,Sf) values (#{id},#{pwd},#{sf})
     </insert>
 
     <delete id="delete" parameterType="int">

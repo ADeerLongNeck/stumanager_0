@@ -1,11 +1,11 @@
-<%@ page import="service.StuService" %>
-<%@ page import="service.impl.StuServiceImpl" %>
-<%@ page import="java.util.List" %>
-<%@ page import="domain.Student" %><%--
+<%@ page import="service.XiuXueService" %>
+<%@ page import="service.impl.XiuXueServiceImpl" %>
+<%@ page import="domain.XiuXue" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Li
-  Date: 2018/10/12 0012
-  Time: 19:36
+  Date: 2018/10/13 0013
+  Time: 1:16
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -30,9 +30,6 @@
 </head>
 
 <body>
-
-
-
 <div id="wrapper">
     <nav class="navbar navbar-default top-navbar" role="navigation">
         <div class="navbar-header">
@@ -55,9 +52,6 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
 
-
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> 当前登陆：张三</a>
-                    </li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
                     </li>
@@ -74,10 +68,14 @@
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu" href="manager.jsp"><i class="fa fa-dashboard"></i> 学生信息</a>
+                    <a  class="active-menu"  href="teacher_xiuxue.jsp"><i class="fa fa-bar-chart-o"></i>休学管理</a>
                 </li>
                 <li>
-                    <a href="manager_teacher.jsp"><i class="fa fa-desktop"></i> 教师信息</a>
+                    <a  href="teacher_fuxue.jsp"><i class="fa fa-qrcode"></i>复学管理</a>
+                </li>
+
+                <li>
+                    <a href="teacher_jiangji.jsp"><i class="fa fa-table"></i>降级管理</a>
                 </li>
 
 
@@ -97,12 +95,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="page-header">
-                        学生信息 <small>管理学生信息</small>
+                        休学管理 <small>管理休学信息</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">后台</a></li>
-                        <li class="active">全部学生信息</li>
+                        <li class="active">全部休学信息</li>
                     </ol>
                 </div>
             </div>
@@ -122,36 +120,35 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>#学号</th>
-                                        <th>姓名</th>
-                                        <th>学院</th>
-                                        <th>专业</th>
+
+                                        <th>学号</th>
+                                        <th>学生</th>
+                                        <th>申请原因</th>
+                                        <th>审核状态</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <%
 
-                                        StuService stuService = new StuServiceImpl();
-                                        List<Student> list = stuService.getStudent();
-                                        for (Student item : list) {
+                                        XiuXueService xiuXueService = new XiuXueServiceImpl();
+                                        List<XiuXue> list = xiuXueService.getAll();
+                                        for (XiuXue item : list) {
                                             //  System.out.println(item.toString());
                                             out.print(" <tr>\n" +
-                                                    "                                        <td><a href=\"manager_table_stu_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
+                                                    "                                        <td><a href=\"teacher_table_xiuxue_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
                                                     "                                        <td>"+item.getSname()+"</td>\n" +
-                                                    "                                        <td>"+item.getSxy()+"</td>\n" +
-                                                    "                                        <td>"+item.getSzy()+"</td>\n" +
+                                                    "                                        <td>"+item.getSqyy()+"</td>\n" +
+                                                    "                                        <td>"+item.getShzt()+"</td>\n" +
                                                     "                                    </tr>");
 
                                         }
                                     %>
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <a href="http://localhost:8080/addstu.jsp" class="btn btn-primary">添加学生</a>
                     <!-- End  Kitchen Sink -->
                 </div>
             </div>

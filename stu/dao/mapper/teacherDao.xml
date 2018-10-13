@@ -28,7 +28,7 @@
         <if test="tno != null">,tno = #{tno}</if>
         <if test="tname != null">,tname = #{tname}</if>
         <if test="ssxy != null">,ssxy = #{ssxy}</if>
-    </trim>
+    </trim>where tno = #{tno}
     </update>
 
     <select id="getAllTea" resultType="domain.Teacher">

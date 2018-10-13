@@ -27,7 +27,7 @@
     </sql>
 
     <insert id="addStudent" parameterType="domain.Student">
-        insert into stuinfo (Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra) values (#{sname},#{szy},#{sxy}
+        insert into stuinfo (Sno,Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra) values (#{sno},#{sname},#{szy},#{sxy}
         ,#{csdate},#{rxdate},#{bydate},#{zzmm},#{jtzz},#{mz},#{jhr},#{sex},#{sfzno},#{phone},#{extra})
     </insert>
 

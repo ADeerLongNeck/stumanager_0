@@ -3,13 +3,13 @@
 <mapper namespace="dao.FuXueDao">
 
     <sql id="select">
-        select fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shr,shbz from fuxue
+        select fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz from fuxue
     </sql>
 
 
     <insert id="add" parameterType="domain.FuXue">
-        insert into fuxue (fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shr,shbz) values (#{fxno},#{sno},#{sname},#{sqyy}
-            ,#{sqdate},#{fxdate},#{shzt},#{shr},#{shbz})
+        insert into fuxue (fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz) values (#{fxno},#{sno},#{sname},#{sqyy}
+            ,#{sqdate},#{fxdate},#{shzt},#{shren},#{shbz})
     </insert>
 
     <delete id="delete" parameterType="int">
@@ -24,7 +24,7 @@
         <if test="sqdate != null">,sqdate = #{sqdate}</if>
         <if test="fxdate != null">,fxdate = #{fxdate}</if>
         <if test="shzt != null">,shzt = #{shzt}</if>
-        <if test="shr != null">,shr = #{shr}</if>
+        <if test="shren != null">,shren = #{shren}</if>
         <if test="shbz != null">,shbz = #{shbz}</if>
     </trim> where sno = #{sno}
     </update>
