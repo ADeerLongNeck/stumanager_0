@@ -15,5 +15,5 @@ public interface FuXueDao {
 
     List<FuXue> getAll(@Param("xy") String xy);
 
-    FuXue get(@Param("sno")int sno);
+    List<FuXue> get(@Param("sno")int sno);
 }

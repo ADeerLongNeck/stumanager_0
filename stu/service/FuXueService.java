@@ -12,7 +12,7 @@ public interface FuXueService {
 
     List<FuXue> getAll(int tno);
 
-    FuXue get(int fxno);
+    List<FuXue> get(int fxno);
 
     void delete(int fxno);
 }

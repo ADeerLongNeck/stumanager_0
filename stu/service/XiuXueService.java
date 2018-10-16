@@ -8,7 +8,7 @@ import java.util.List;
 public interface XiuXueService {
 
 
-    XiuXue get(int xxno);
+    List<XiuXue> get(int sno);
 
     List<XiuXue> getAll(int tno);
 

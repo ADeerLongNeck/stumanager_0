@@ -76,9 +76,7 @@ public class test {
         XiuXueService service = new XiuXueServiceImpl();
         XiuXue xiuXue = new XiuXue();
         xiuXue.setSno(154);
-        xiuXue.setShzt("审核通过");
-        service.shenhe(xiuXue);
-
+        service.applyXiuxue(xiuXue);
 
 
     }

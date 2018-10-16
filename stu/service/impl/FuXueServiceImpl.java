@@ -12,12 +12,12 @@ import java.util.List;
 
 public class FuXueServiceImpl implements FuXueService {
 
-    SqlSessionFactory sqlSessionFactory = GetSessionFactory.getSqlSessionFactory();
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    XiuXueDao xiuXueDao = sqlSession.getMapper(XiuXueDao.class);
-    FuXueDao fuXueDao = sqlSession.getMapper(FuXueDao.class);
-    StuDao stuDao = sqlSession.getMapper(StuDao.class);
-    TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
+    private SqlSessionFactory sqlSessionFactory = GetSessionFactory.getSqlSessionFactory();
+    private SqlSession sqlSession = sqlSessionFactory.openSession();
+    private XiuXueDao xiuXueDao = sqlSession.getMapper(XiuXueDao.class);
+    private FuXueDao fuXueDao = sqlSession.getMapper(FuXueDao.class);
+    private StuDao stuDao = sqlSession.getMapper(StuDao.class);
+    private TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
 
     @Override
@@ -49,8 +49,8 @@ public class FuXueServiceImpl implements FuXueService {
     }
 
     @Override
-    public FuXue get(int fxno) {
-        return fuXueDao.get(fxno);
+    public List<FuXue> get(int sno) {
+        return fuXueDao.get(sno);
     }
 
     @Override
