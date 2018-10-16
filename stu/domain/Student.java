@@ -34,6 +34,10 @@ public class Student {
 
     private String extra;
 
+    private int nj;
+
+    private String xiuxue;
+
     public int getSno() {
         return sno;
     }
@@ -154,6 +158,22 @@ public class Student {
         this.extra = extra;
     }
 
+    public int getNj() {
+        return nj;
+    }
+
+    public void setNj(int nj) {
+        this.nj = nj;
+    }
+
+    public String getXiuxue() {
+        return xiuxue;
+    }
+
+    public void setXiuxue(String xiuxue) {
+        this.xiuxue = xiuxue;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -161,17 +181,19 @@ public class Student {
                 ", sname='" + sname + '\'' +
                 ", szy='" + szy + '\'' +
                 ", sxy='" + sxy + '\'' +
-                ", csdate=" + csdate +
-                ", rxdate=" + rxdate +
-                ", bydate=" + bydate +
+                ", csdate='" + csdate + '\'' +
+                ", rxdate='" + rxdate + '\'' +
+                ", bydate='" + bydate + '\'' +
                 ", zzmm='" + zzmm + '\'' +
                 ", jtzz='" + jtzz + '\'' +
                 ", mz='" + mz + '\'' +
                 ", jhr='" + jhr + '\'' +
                 ", sex='" + sex + '\'' +
-                ", sfzno=" + sfzno +
-                ", phone=" + phone +
+                ", sfzno='" + sfzno + '\'' +
+                ", phone='" + phone + '\'' +
                 ", extra='" + extra + '\'' +
+                ", nj=" + nj +
+                ", xiuxue='" + xiuxue + '\'' +
                 '}';
     }
 }

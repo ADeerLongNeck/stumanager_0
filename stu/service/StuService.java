@@ -9,7 +9,7 @@ public interface StuService {
 
     void addStudent(Student student);
 
-    List<Student> getStudent();
+    List<Student> getStudent(int tno);
 
     void deleteStudent(Student student);
 

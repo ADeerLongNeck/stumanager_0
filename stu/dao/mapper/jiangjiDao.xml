@@ -24,8 +24,8 @@
     </trim> where sno = #{sno}
     </update>
 
-    <select id="getAll" resultType="domain.Jiangji">
-        <include refid="select"/>
+    <select id="getAll" parameterType="java.lang.String" resultType="domain.Jiangji">
+        <include refid="select"/> where xy = #{xy}
     </select>
 
     <select id="get" parameterType="int" resultType="domain.Jiangji">

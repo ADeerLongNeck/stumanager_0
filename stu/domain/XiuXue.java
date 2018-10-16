@@ -13,6 +13,7 @@ public class XiuXue {
     private String shzt;
     private String shren;
     private String shbz;
+    private String xy;
 
     public int getXxno() {
         return xxno;
@@ -86,6 +87,14 @@ public class XiuXue {
         this.shbz = shbz;
     }
 
+    public String getXy() {
+        return xy;
+    }
+
+    public void setXy(String xy) {
+        this.xy = xy;
+    }
+
     @Override
     public String toString() {
         return "XiuXue{" +
@@ -98,6 +107,7 @@ public class XiuXue {
                 ", shzt='" + shzt + '\'' +
                 ", shren='" + shren + '\'' +
                 ", shbz='" + shbz + '\'' +
+                ", xy='" + xy + '\'' +
                 '}';
     }
 }

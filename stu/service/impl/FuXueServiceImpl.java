@@ -1,9 +1,9 @@
 package service.impl;
 
-import dao.FuXueDao;
-import dao.GetSessionFactory;
-import dao.XiuXueDao;
+import dao.*;
 import domain.FuXue;
+import domain.Student;
+import domain.Teacher;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import service.FuXueService;
@@ -16,6 +16,8 @@ public class FuXueServiceImpl implements FuXueService {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     XiuXueDao xiuXueDao = sqlSession.getMapper(XiuXueDao.class);
     FuXueDao fuXueDao = sqlSession.getMapper(FuXueDao.class);
+    StuDao stuDao = sqlSession.getMapper(StuDao.class);
+    TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
 
     @Override
@@ -26,13 +28,24 @@ public class FuXueServiceImpl implements FuXueService {
 
     @Override
     public void shenhe(FuXue fuXue) {
+        Student student = new Student();
+
+        if (fuXue.getShzt().equals("审核通过")){
+            student.setXiuxue("no");
+            stuDao.updateStudent(student);
+        }else if (fuXue.getShzt().equals("审核不通过")){
+            student.setXiuxue("yes");
+            stuDao.updateStudent(student);
+        }
         fuXueDao.update(fuXue);
         sqlSession.commit();
     }
 
     @Override
-    public List<FuXue> getAll() {
-        return fuXueDao.getAll();
+    public List<FuXue> getAll(int tno) {
+        Teacher teacher = teaDao.getTea(tno);
+        String xy = teacher.getSsxy();
+        return fuXueDao.getAll(xy);
     }
 
     @Override

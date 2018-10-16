@@ -3,7 +3,9 @@ package service.impl;
 import dao.GetSessionFactory;
 import dao.LoginDao;
 import dao.StuDao;
+import dao.TeaDao;
 import domain.Student;
+import domain.Teacher;
 import domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +21,7 @@ public class StuServiceImpl implements StuService {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     StuDao stuDao = sqlSession.getMapper(StuDao.class);
     LoginDao loginDao = sqlSession.getMapper(LoginDao.class);
+    TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
     @Override
     public void addStudent(Student student) {
@@ -32,9 +35,11 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
-    public List<Student> getStudent() {
+    public List<Student> getStudent(int tno) {
         List<Student> list;
-        list = stuDao.getStudent();
+        Teacher teacher = teaDao.getTea(tno);
+        String xy = teacher.getSsxy();
+        list = stuDao.getStudent(xy);
         return list;
     }
 

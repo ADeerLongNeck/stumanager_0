@@ -3,13 +3,13 @@
 <mapper namespace="dao.FuXueDao">
 
     <sql id="select">
-        select fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz from fuxue
+        select fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz,xy from fuxue
     </sql>
 
 
     <insert id="add" parameterType="domain.FuXue">
-        insert into fuxue (fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz) values (#{fxno},#{sno},#{sname},#{sqyy}
-            ,#{sqdate},#{fxdate},#{shzt},#{shren},#{shbz})
+        insert into fuxue (fxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz,xy) values (#{fxno},#{sno},#{sname},#{sqyy}
+            ,#{sqdate},#{fxdate},#{shzt},#{shren},#{shbz},#{xy})
     </insert>
 
     <delete id="delete" parameterType="int">
@@ -26,11 +26,12 @@
         <if test="shzt != null">,shzt = #{shzt}</if>
         <if test="shren != null">,shren = #{shren}</if>
         <if test="shbz != null">,shbz = #{shbz}</if>
+        <if test="xy != null">,xy = #{xy}</if>
     </trim> where sno = #{sno}
     </update>
 
-    <select id="getAll" resultType="domain.FuXue">
-        <include refid="select"/>
+    <select id="getAll" parameterType="java.lang.String" resultType="domain.FuXue">
+        <include refid="select"/> where xy = #{xy}
     </select>
 
     <select id="get" parameterType="int" resultType="domain.FuXue">

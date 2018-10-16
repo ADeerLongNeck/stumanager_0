@@ -24,7 +24,7 @@ public interface JiangjiService {
 
     void delete(int sno);
 
-    List<Jiangji> getAll();
+    List<Jiangji> getAll(int tno);
 
     Jiangji get(int sno);
 }

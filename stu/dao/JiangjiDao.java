@@ -13,7 +13,7 @@ public interface JiangjiDao {
 
     void update(Jiangji jiangji);
 
-    List<Jiangji> getAll();
+    List<Jiangji> getAll(@Param("xy") String xy);
 
     Jiangji get(@Param("sno")int sno);
 }

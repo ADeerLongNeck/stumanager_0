@@ -8,6 +8,7 @@ public class Jiangji {
     private String shzt;
     private String shren;
     private String shbz;
+    private String xy;
 
     public int getJjno() {
         return jjno;
@@ -57,6 +58,14 @@ public class Jiangji {
         this.shbz = shbz;
     }
 
+    public String getXy() {
+        return xy;
+    }
+
+    public void setXy(String xy) {
+        this.xy = xy;
+    }
+
     @Override
     public String toString() {
         return "Jiangji{" +
@@ -66,6 +75,7 @@ public class Jiangji {
                 ", shzt='" + shzt + '\'' +
                 ", shren='" + shren + '\'' +
                 ", shbz='" + shbz + '\'' +
+                ", xy='" + xy + '\'' +
                 '}';
     }
 }

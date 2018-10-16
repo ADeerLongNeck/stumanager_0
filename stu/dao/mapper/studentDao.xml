@@ -3,7 +3,7 @@
 <mapper namespace="dao.StuDao">
 
     <sql id="select">
-        select Sno,Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra from stuinfo
+        select Sno,Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra,nj,xiuxue from stuinfo
     </sql>
 
     <sql id="QUERY_WHERE_CLAUSE">
@@ -22,17 +22,19 @@
             <if test="sfzno != null">and Sfzno = #{sfzno}</if>
             <if test="phone != null">and Phone = #{phone}</if>
             <if test="extra != null">and Extra = #{extra}</if>
+            <if test="nj != null">and nj = #{nj}</if>
+            <if test="xiuxue != null">and xiuxue = #{xiuxue}</if>
         </trim>
 
     </sql>
 
     <insert id="addStudent" parameterType="domain.Student">
-        insert into stuinfo (Sno,Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra) values (#{sno},#{sname},#{szy},#{sxy}
-        ,#{csdate},#{rxdate},#{bydate},#{zzmm},#{jtzz},#{mz},#{jhr},#{sex},#{sfzno},#{phone},#{extra})
+        insert into stuinfo (Sno,Sname,Szy,Sxy,Csdate,Rxdate,Bydate,Zzmm,Jtzz,Mz,Jhr,Sex,Sfzno,Phone,Extra,nj,xiuxue) values (#{sno},#{sname},#{szy},#{sxy}
+        ,#{csdate},#{rxdate},#{bydate},#{zzmm},#{jtzz},#{mz},#{jhr},#{sex},#{sfzno},#{phone},#{extra},#{nj},#{xiuxue})
     </insert>
 
-    <select id="getStudent" resultType="domain.Student">
-        <include refid="select"/>
+    <select id="getStudent" parameterType="java.lang.String" resultType="domain.Student">
+        <include refid="select"/> where sxy = #{xy};
     </select>
 
     <delete id="deleteStudent" parameterType="domain.Student">
@@ -55,6 +57,8 @@
             <if test="sfzno != null">,Sfzno = #{sfzno}</if>
             <if test="phone != null">, Phone = #{phone}</if>
             <if test="extra != null">,Extra = #{extra}</if>
+            <if test="nj != null">,nj = #{nj}</if>
+            <if test="xiuxue != null">,xiuxue = #{xiuxue}</if>
         </trim>
         where Sno = #{sno}
     </update>

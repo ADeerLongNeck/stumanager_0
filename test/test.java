@@ -5,14 +5,8 @@ import domain.XiuXue;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import service.FuXueService;
-import service.StuService;
-import service.TeaService;
-import service.XiuXueService;
-import service.impl.FuXueServiceImpl;
-import service.impl.StuServiceImpl;
-import service.impl.TeaServiceImpl;
-import service.impl.XiuXueServiceImpl;
+import service.*;
+import service.impl.*;
 
 import java.io.InputStream;
 import java.util.Date;
@@ -79,13 +73,13 @@ public class test {
 //        student.setSno(2);
 //        StuService stuService = new StuServiceImpl();
 //        stuService.updateStudent(student);
+        XiuXueService service = new XiuXueServiceImpl();
         XiuXue xiuXue = new XiuXue();
         xiuXue.setSno(154);
-      xiuXue.setShbz("nima");
+        xiuXue.setShzt("审核通过");
+        service.shenhe(xiuXue);
 
 
-        XiuXueService xiuXueService = new XiuXueServiceImpl();
-        xiuXueService.shenhe(xiuXue);
 
     }
 

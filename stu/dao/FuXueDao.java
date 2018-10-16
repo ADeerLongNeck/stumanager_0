@@ -13,7 +13,7 @@ public interface FuXueDao {
 
     void update(FuXue fuXue);
 
-    List<FuXue> getAll();
+    List<FuXue> getAll(@Param("xy") String xy);
 
     FuXue get(@Param("sno")int sno);
 }

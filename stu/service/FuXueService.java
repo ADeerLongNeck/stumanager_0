@@ -10,7 +10,7 @@ public interface FuXueService {
 
     void shenhe(FuXue fuXue);
 
-    List<FuXue> getAll();
+    List<FuXue> getAll(int tno);
 
     FuXue get(int fxno);
 

@@ -3,13 +3,13 @@
 <mapper namespace="dao.XiuXueDao">
 
     <sql id="select">
-        select xxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz from xiuxue
+        select xxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz,xy from xiuxue
     </sql>
 
 
     <insert id="add" parameterType="domain.XiuXue">
-        insert into xiuxue (xxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz) values (#{xxno},#{sno},#{sname},#{sqyy}
-        ,#{sqdate},#{fxdate},#{shzt},#{shren},#{shbz})
+        insert into xiuxue (xxno,sno,sname,sqyy,sqdate,fxdate,shzt,shren,shbz,xy) values (#{xxno},#{sno},#{sname},#{sqyy}
+        ,#{sqdate},#{fxdate},#{shzt},#{shren},#{shbz},#{xy})
     </insert>
 
     <delete id="delete" parameterType="int">
@@ -26,11 +26,12 @@
         <if test="shzt != null">,shzt = #{shzt}</if>
         <if test="shren != null">,shren = #{shren}</if>
         <if test="shbz != null">,shbz = #{shbz}</if>
+        <if test="xy != null">,xy = #{xy}</if>
     </trim> where sno = #{sno}
     </update>
 
-    <select id="getAll" resultType="domain.XiuXue">
-        <include refid="select"/>
+    <select id="getAll" parameterType="java.lang.String" resultType="domain.XiuXue">
+        <include refid="select"/> where xy = #{xy}
     </select>
 
     <select id="get" parameterType="int" resultType="domain.XiuXue">

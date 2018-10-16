@@ -1,9 +1,9 @@
 package service.impl;
 
-import dao.GetSessionFactory;
-import dao.JiangjiDao;
-import dao.XiuXueDao;
+import dao.*;
 import domain.Jiangji;
+import domain.Student;
+import domain.Teacher;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import service.JiangjiService;
@@ -15,6 +15,8 @@ public class JiangjiServiceImpl implements JiangjiService {
     SqlSessionFactory sqlSessionFactory = GetSessionFactory.getSqlSessionFactory();
     SqlSession sqlSession = sqlSessionFactory.openSession();
     JiangjiDao jiangjiDao = sqlSession.getMapper(JiangjiDao.class);
+    StuDao stuDao = sqlSession.getMapper(StuDao.class);
+    TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
     @Override
     public void applyJiangji(Jiangji jiangji) {
@@ -30,12 +32,19 @@ public class JiangjiServiceImpl implements JiangjiService {
 
     @Override
     public void shenhe(Jiangji jiangji) {
-        jiangjiDao.update(jiangji);
+        Student student = stuDao.getSingleStudent(jiangji.getSno());
+        if (jiangji.getShzt().equals("审核通过")) {
+            student.setNj(student.getNj() - 1);
+            stuDao.updateStudent(student);
+        }
         sqlSession.commit();
     }
 
     @Override
     public void queren(Jiangji jiangji) {
+        Student student = stuDao.getSingleStudent(jiangji.getSno());
+        student.setNj(student.getNj() - 1);
+        stuDao.updateStudent(student);
         jiangjiDao.update(jiangji);
         sqlSession.commit();
     }
@@ -47,8 +56,10 @@ public class JiangjiServiceImpl implements JiangjiService {
     }
 
     @Override
-    public List<Jiangji> getAll() {
-        return jiangjiDao.getAll();
+    public List<Jiangji> getAll(int tno) {
+        Teacher teacher = teaDao.getTea(tno);
+        String xy = teacher.getSsxy();
+        return jiangjiDao.getAll(xy);
     }
 
     @Override

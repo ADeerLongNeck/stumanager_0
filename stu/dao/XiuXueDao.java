@@ -13,7 +13,7 @@ public interface XiuXueDao {
 
     void update(XiuXue xiuXue);
 
-    List<XiuXue> getAll();
+    List<XiuXue> getAll(@Param("xy") String xy);
 
     XiuXue get(@Param("sno") int sno);
 }

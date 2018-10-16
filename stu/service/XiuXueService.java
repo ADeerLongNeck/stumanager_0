@@ -10,7 +10,7 @@ public interface XiuXueService {
 
     XiuXue get(int xxno);
 
-    List<XiuXue> getAll();
+    List<XiuXue> getAll(int tno);
 
     void applyXiuxue(XiuXue xiuXue);
 

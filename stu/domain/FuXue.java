@@ -11,6 +11,15 @@ public class FuXue {
     private String shzt;
     private String shren;
     private String shbz;
+    private String xy;
+
+    public String getXy() {
+        return xy;
+    }
+
+    public void setXy(String xy) {
+        this.xy = xy;
+    }
 
     public int getFxno() {
         return fxno;
@@ -96,6 +105,7 @@ public class FuXue {
                 ", shzt='" + shzt + '\'' +
                 ", shren='" + shren + '\'' +
                 ", shbz='" + shbz + '\'' +
+                ", xy='" + xy + '\'' +
                 '}';
     }
 }

@@ -9,7 +9,7 @@ public interface StuDao {
 
     void addStudent(Student student);
 
-    List<Student> getStudent();
+    List<Student> getStudent(@Param("xy") String xy);
 
     void deleteStudent(Student student);
 
