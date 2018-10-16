@@ -22,8 +22,16 @@ public class FuXueServiceImpl implements FuXueService {
 
     @Override
     public void applyFuXue(FuXue fuXue) {
-        fuXueDao.add(fuXue);
-        sqlSession.commit();
+
+        Student student = stuDao.getSingleStudent(fuXue.getSno());
+        if (student.getXiuxue().equals("yes")){
+            stuDao.updateStudent(student);
+            fuXue.setSname(student.getSname());
+            fuXue.setXy(student.getSxy());
+            fuXueDao.add(fuXue);
+            sqlSession.commit();
+            student.setXiuxue("no");
+        }
     }
 
     @Override

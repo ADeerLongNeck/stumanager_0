@@ -12,7 +12,7 @@ public interface FuXueService {
 
     List<FuXue> getAll(int tno);
 
-    List<FuXue> get(int fxno);
+    List<FuXue> get(int sno);
 
     FuXue getSingle(int fxno);
 

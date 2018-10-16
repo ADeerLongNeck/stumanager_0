@@ -78,7 +78,12 @@ public class test {
 //        xiuXue.setSno(154);
 //        service.applyXiuxue(xiuXue);
 
-
+        XiuXue xiuXue = new XiuXue();
+        xiuXue.setXxno(5);
+        xiuXue.setSname("shabi");
+        xiuXue.setShzt("审核通过");
+        XiuXueService service = new XiuXueServiceImpl();
+        service.shenhe(xiuXue);
 
 
     }
