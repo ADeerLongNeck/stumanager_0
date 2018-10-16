@@ -71,4 +71,8 @@
         update stuinfo set djzt = '已登记' where Sno = #{sno}
     </update>
 
+    <select id="getAll" resultType="domain.Student">
+        <include refid="select"/>
+    </select>
+
 </mapper>

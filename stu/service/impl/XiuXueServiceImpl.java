@@ -20,6 +20,10 @@ public class XiuXueServiceImpl implements XiuXueService {
     private TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
 
+    @Override
+    public XiuXue getSingle(int xxno) {
+        return xiuXueDao.getSingle(xxno);
+    }
 
     @Override
     public List<XiuXue> get(int sno) {
@@ -34,12 +38,20 @@ public class XiuXueServiceImpl implements XiuXueService {
     }
 
     @Override
-    public void applyXiuxue(XiuXue xiuXue) {
+    public boolean applyXiuxue(XiuXue xiuXue) {
         Student student = stuDao.getSingleStudent(xiuXue.getSno());
-        xiuXue.setSname(student.getSname());
-        xiuXue.setXy(student.getSxy());
-        xiuXueDao.add(xiuXue);
-        sqlSession.commit();
+        if (student.getXiuxue().equals("yes")){
+            return false;
+        }else {
+            student.setXiuxue("yes");
+            stuDao.updateStudent(student);
+            xiuXue.setSname(student.getSname());
+            xiuXue.setXy(student.getSxy());
+            xiuXueDao.add(xiuXue);
+            sqlSession.commit();
+            return true;
+        }
+
     }
 
     @Override

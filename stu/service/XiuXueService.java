@@ -10,9 +10,11 @@ public interface XiuXueService {
 
     List<XiuXue> get(int sno);
 
+    XiuXue getSingle(int xxno);
+
     List<XiuXue> getAll(int tno);
 
-    void applyXiuxue(XiuXue xiuXue);
+    boolean applyXiuxue(XiuXue xiuXue);
 
     void shenhe(XiuXue xiuXue);
 

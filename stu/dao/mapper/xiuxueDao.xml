@@ -37,4 +37,8 @@
     <select id="get" parameterType="int" resultType="domain.XiuXue">
         <include refid="select"/>where sno = #{sno}
     </select>
+
+    <select id="getSingle" parameterType="int" resultType="domain.XiuXue">
+        <include refid="select"/>where xxno = #{xxno}
+    </select>
 </mapper>

@@ -14,5 +14,7 @@ public interface FuXueService {
 
     List<FuXue> get(int fxno);
 
+    FuXue getSingle(int fxno);
+
     void delete(int fxno);
 }

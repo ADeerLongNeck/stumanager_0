@@ -73,10 +73,12 @@ public class test {
 //        student.setSno(2);
 //        StuService stuService = new StuServiceImpl();
 //        stuService.updateStudent(student);
-        XiuXueService service = new XiuXueServiceImpl();
-        XiuXue xiuXue = new XiuXue();
-        xiuXue.setSno(154);
-        service.applyXiuxue(xiuXue);
+//        XiuXueService service = new XiuXueServiceImpl();
+//        XiuXue xiuXue = new XiuXue();
+//        xiuXue.setSno(154);
+//        service.applyXiuxue(xiuXue);
+
+
 
 
     }

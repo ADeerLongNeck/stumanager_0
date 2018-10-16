@@ -54,6 +54,11 @@ public class FuXueServiceImpl implements FuXueService {
     }
 
     @Override
+    public FuXue getSingle(int fxno) {
+        return fuXueDao.getSingle(fxno);
+    }
+
+    @Override
     public void delete(int fxno) {
         fuXueDao.delete(fxno);
         sqlSession.commit();

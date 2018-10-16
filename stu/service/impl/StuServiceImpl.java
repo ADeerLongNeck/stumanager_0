@@ -23,6 +23,12 @@ public class StuServiceImpl implements StuService {
     LoginDao loginDao = sqlSession.getMapper(LoginDao.class);
     TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
+
+    @Override
+    public List<Student> getAll() {
+        return stuDao.getAll();
+    }
+
     @Override
     public void addStudent(Student student) {
         stuDao.addStudent(student);

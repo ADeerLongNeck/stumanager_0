@@ -9,6 +9,8 @@ public interface StuService {
 
     void addStudent(Student student);
 
+    List<Student> getAll();
+
     List<Student> getStudent(int tno);
 
     void deleteStudent(Student student);

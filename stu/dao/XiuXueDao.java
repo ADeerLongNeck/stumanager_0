@@ -16,4 +16,6 @@ public interface XiuXueDao {
     List<XiuXue> getAll(@Param("xy") String xy);
 
     List<XiuXue> get(@Param("sno") int sno);
+
+    XiuXue getSingle(@Param("xxno") int xxno);
 }
