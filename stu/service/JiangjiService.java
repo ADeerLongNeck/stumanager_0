@@ -26,5 +26,7 @@ public interface JiangjiService {
 
     List<Jiangji> getAll(int tno);
 
-    Jiangji get(int sno);
+    List<Jiangji> get(int sno);
+
+    Jiangji getSingle(int jjno);
 }

@@ -11,6 +11,7 @@ public class Jiangji {
     private String xy;
     private String sqdate;
     private String sqyy;
+    private String pass;
 
     public int getJjno() {
         return jjno;
@@ -84,6 +85,14 @@ public class Jiangji {
         this.sqyy = sqyy;
     }
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     @Override
     public String toString() {
         return "Jiangji{" +
@@ -96,6 +105,7 @@ public class Jiangji {
                 ", xy='" + xy + '\'' +
                 ", sqdate='" + sqdate + '\'' +
                 ", sqyy='" + sqyy + '\'' +
+                ", pass='" + pass + '\'' +
                 '}';
     }
 }

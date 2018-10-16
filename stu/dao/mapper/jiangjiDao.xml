@@ -3,12 +3,12 @@
 <mapper namespace="dao.JiangjiDao">
 
     <sql id="select">
-        select jjno,sno,sname,shzt,shren,shbz,xy,sqdate,sqyy from jiangji
+        select jjno,sno,sname,shzt,shren,shbz,xy,sqdate,sqyy,pass from jiangji
     </sql>
 
 
     <insert id="add" parameterType="domain.Jiangji">
-        insert into jiangji (sno,sname,shzt,shren,shbz,xy,sqdate,sqyy) values (#{sno},#{sname},#{shzt},#{shren},#{shbz},#{xy},#{sqdate},#{sqyy})
+        insert into jiangji (sno,sname,shzt,shren,shbz,xy,sqdate,sqyy,pass) values (#{sno},#{sname},#{shzt},#{shren},#{shbz},#{xy},#{sqdate},#{sqyy},#{pass})
     </insert>
 
     <delete id="delete" parameterType="int">
@@ -21,6 +21,7 @@
         <if test="shren != null">,shren = #{shren}</if>
         <if test="shbz != null">,shbz = #{shbz}</if>
         <if test="sqyy != null">,sqyy = #{sqyy}</if>
+        <if test="pass != null">,pass = #{pass}</if>
     </trim> where sno = #{sno}
     </update>
 
@@ -30,5 +31,9 @@
 
     <select id="get" parameterType="int" resultType="domain.Jiangji">
         <include refid="select"/>where sno = #{sno}
+    </select>
+
+    <select id="getSingle" parameterType="int" resultType="domain.Jiangji">
+        <include refid="select"/>where jjno = #{jjno}
     </select>
 </mapper>

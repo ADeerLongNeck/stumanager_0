@@ -66,8 +66,12 @@ public class JiangjiServiceImpl implements JiangjiService {
     }
 
     @Override
-    public Jiangji get(int sno) {
-
+    public List<Jiangji> get(int sno) {
         return jiangjiDao.get(sno);
+    }
+
+    @Override
+    public Jiangji getSingle(int jjno) {
+        return jiangjiDao.getSingle(jjno);
     }
 }
