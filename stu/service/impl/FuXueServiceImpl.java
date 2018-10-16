@@ -25,19 +25,20 @@ public class FuXueServiceImpl implements FuXueService {
 
         Student student = stuDao.getSingleStudent(fuXue.getSno());
         if (student.getXiuxue().equals("yes")){
+            student.setXiuxue("no");
             stuDao.updateStudent(student);
             fuXue.setSname(student.getSname());
             fuXue.setXy(student.getSxy());
             fuXueDao.add(fuXue);
             sqlSession.commit();
-            student.setXiuxue("no");
+
         }
     }
 
     @Override
     public void shenhe(FuXue fuXue) {
         Student student = new Student();
-
+        student.setSno(fuXue.getSno());
         if (fuXue.getShzt().equals("审核通过")){
             student.setXiuxue("no");
             stuDao.updateStudent(student);

@@ -20,6 +20,9 @@ public class JiangjiServiceImpl implements JiangjiService {
 
     @Override
     public void applyJiangji(Jiangji jiangji) {
+        Student student = stuDao.getSingleStudent(jiangji.getSno());
+        jiangji.setSname(student.getSname());
+        jiangji.setXy(student.getSxy());
         jiangjiDao.add(jiangji);
         sqlSession.commit();
     }
@@ -64,6 +67,7 @@ public class JiangjiServiceImpl implements JiangjiService {
 
     @Override
     public Jiangji get(int sno) {
+
         return jiangjiDao.get(sno);
     }
 }

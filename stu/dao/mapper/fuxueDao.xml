@@ -27,7 +27,7 @@
         <if test="shren != null">,shren = #{shren}</if>
         <if test="shbz != null">,shbz = #{shbz}</if>
         <if test="xy != null">,xy = #{xy}</if>
-    </trim> where sno = #{sno}
+    </trim> where fxno = #{fxno}
     </update>
 
     <select id="getAll" parameterType="java.lang.String" resultType="domain.FuXue">

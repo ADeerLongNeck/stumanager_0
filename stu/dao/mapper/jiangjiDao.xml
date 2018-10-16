@@ -3,12 +3,12 @@
 <mapper namespace="dao.JiangjiDao">
 
     <sql id="select">
-        select sno,sname,shzt,shren,shbz from jiangji
+        select jjno,sno,sname,shzt,shren,shbz,xy,sqdate,sqyy from jiangji
     </sql>
 
 
     <insert id="add" parameterType="domain.Jiangji">
-        insert into jiangji (sno,sname,shzt,shren,shbz) values (#{sno},#{sname},#{shzt},#{shren},#{shbz})
+        insert into jiangji (sno,sname,shzt,shren,shbz,xy,sqdate,sqyy) values (#{sno},#{sname},#{shzt},#{shren},#{shbz},#{xy},#{sqdate},#{sqyy})
     </insert>
 
     <delete id="delete" parameterType="int">
@@ -17,10 +17,10 @@
 
     <update id="update" parameterType="domain.Jiangji">
         update fuxue <trim prefix="SET" prefixOverrides=",">
-        <if test="sname != null">,sname = #{sname}</if>
         <if test="shzt != null">,shzt = #{shzt}</if>
         <if test="shren != null">,shren = #{shren}</if>
         <if test="shbz != null">,shbz = #{shbz}</if>
+        <if test="sqyy != null">,sqyy = #{sqyy}</if>
     </trim> where sno = #{sno}
     </update>
 
