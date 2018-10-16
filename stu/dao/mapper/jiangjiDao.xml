@@ -22,7 +22,7 @@
         <if test="shbz != null">,shbz = #{shbz}</if>
         <if test="sqyy != null">,sqyy = #{sqyy}</if>
         <if test="pass != null">,pass = #{pass}</if>
-    </trim> where sno = #{sno}
+    </trim> where jjno = #{jjno}
     </update>
 
     <select id="getAll" parameterType="java.lang.String" resultType="domain.Jiangji">
