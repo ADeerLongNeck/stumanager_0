@@ -109,7 +109,7 @@
 
 
             <!-- /. ROW
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div> -->
+
             <div class="row">
                 <div class="col-md-12">
                     <!--   Kitchen Sink -->
@@ -126,6 +126,10 @@
                                         <th>学号</th>
                                         <th>学生</th>
                                         <th>申请原因</th>
+                                        <th>申请日期</th>
+                                        <th>复学日期</th>
+                                        <th>审核人</th>
+                                        <th>审核备注</th>
                                         <th>审核状态</th>
 
                                     </tr>
@@ -135,17 +139,29 @@
 
                                         XiuXueService fuXueService = new XiuXueServiceImpl();
                                         int sno = (int) session.getAttribute("sno");
-                                        XiuXue item = fuXueService.get(sno);
-                                        if(item!=null){
 
-                                            //  System.out.println(item.toString());
-                                            out.print(" <tr>\n" +
-                                                    "                                        <td><a >"+item.getSno()+"</a></td>\n" +
-                                                    "                                        <td>"+item.getSname()+"</td>\n" +
-                                                    "                                        <td>"+item.getSqyy()+"</td>\n" +
-                                                    "                                        <td>"+item.getShzt()+"</td>\n" +
-                                                    "                                    </tr>");
+
+
+                                       List<XiuXue>  list = fuXueService.get(sno);
+                                        for (XiuXue item : list) {
+                                            if(item!=null){
+
+                                                //  System.out.println(item.toString());
+                                                out.print(" <tr>\n" +
+                                                        "                                        <td><a >"+item.getSno()+"</a></td>\n" +
+                                                        "                                        <td>"+item.getSname()+"</td>\n" +
+                                                        "                                        <td>"+item.getSqyy()+"</td>\n" +
+                                                        "                                        <td>"+item.getSqdate()+"</td>\n" +
+                                                        "                                        <td>"+item.getFxdate()+"</td>\n" +
+                                                        "                                        <td>"+item.getShren()+"</td>\n" +
+                                                        "                                        <td>"+item.getShbz()+"</td>\n" +
+                                                        "                                        <td>"+item.getShzt()+"</td>\n" +
+                                                        "                                    </tr>");
+                                            }
+
+
                                         }
+
 
 
                                     %>
@@ -157,12 +173,9 @@
                     <!-- End  Kitchen Sink -->
                     <%
 
-                        XiuXueService jiangjiService2 = new XiuXueServiceImpl();
 
-                        XiuXue item2 = jiangjiService2.get(sno);
-                        if (item2==null){
-                            out.print("   <a href=\"http://localhost:8080/student_table_xiuxue_info.jsp?sno=1\" class=\"btn btn-primary\">申请降级</a>");
-                        }
+                            out.print("   <a href=\"http://localhost:8080/student_table_xiuxue_info.jsp?sno="+sno+"\" class=\"btn btn-primary\">申请休学</a>");
+
 
 
                     %>

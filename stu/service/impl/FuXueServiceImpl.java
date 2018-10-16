@@ -21,7 +21,7 @@ public class FuXueServiceImpl implements FuXueService {
 
 
     @Override
-    public void applyFuXue(FuXue fuXue) {
+    public boolean applyFuXue(FuXue fuXue) {
 
         Student student = stuDao.getSingleStudent(fuXue.getSno());
         if (student.getXiuxue().equals("yes")){
@@ -31,8 +31,8 @@ public class FuXueServiceImpl implements FuXueService {
             fuXue.setXy(student.getSxy());
             fuXueDao.add(fuXue);
             sqlSession.commit();
-
-        }
+            return true;
+        }else return false;
     }
 
     @Override
@@ -42,9 +42,11 @@ public class FuXueServiceImpl implements FuXueService {
         if (fuXue.getShzt().equals("审核通过")){
             student.setXiuxue("no");
             stuDao.updateStudent(student);
+
         }else if (fuXue.getShzt().equals("审核不通过")){
             student.setXiuxue("yes");
             stuDao.updateStudent(student);
+
         }
         fuXueDao.update(fuXue);
         sqlSession.commit();

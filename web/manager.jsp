@@ -132,7 +132,7 @@
                                     <%
 
                                         StuService stuService = new StuServiceImpl();
-                                        List<Student> list = stuService.getStudent();
+                                        List<Student> list = stuService.getAll();
                                         for (Student item : list) {
                                             //  System.out.println(item.toString());
                                             out.print(" <tr>\n" +

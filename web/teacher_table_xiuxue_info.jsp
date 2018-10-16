@@ -43,7 +43,7 @@
     public XiuXue getData(int sno){
 
         XiuXueService xiuXueService = new XiuXueServiceImpl();
-       XiuXue xiuXue=xiuXueService.get(sno);
+       XiuXue xiuXue=xiuXueService.getSingle(sno);
 
         return xiuXue;
     }
@@ -61,7 +61,7 @@
 
         }
         //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
-        response.sendRedirect("teacher_table_xiuxue_info.jsp?sno="+xiu.getSno());
+        response.sendRedirect("teacher_table_xiuxue_info.jsp?sno="+xiu.getXxno());
 
     }else{
         request.setCharacterEncoding("utf-8");
@@ -161,8 +161,10 @@
                                 <div class="col-lg-12">
                                     <form role="form" action="teacher_table_xiuxue_info.jsp" method="post">
 
-
-
+                                        <div class="form-group">
+                                            <label>表id</label>
+                                        <input id="xxno" name="xxno" class="form-control"  value="<%= xiuXue.getXxno() %>">
+                                        </div>
                                         <div class="form-group">
                                             <label>学号</label>
                                             <input id="sno" name="sno" class="form-control"  value="<%= xiuXue.getSno() %>">
@@ -171,7 +173,7 @@
 
                                         <div class="form-group">
                                             <label>学生姓名</label>
-                                            <input id="sname"  name="sname" class="form-control"  value="<%= xiuXue.getSno() %>">
+                                            <input id="sname"  name="sname" class="form-control"  value="<%= xiuXue.getSname() %>">
 
                                         </div>
                                         <div class="form-group">
@@ -181,12 +183,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label>申请年月日</label>
-                                            <input id="sqdate"  name="sqdate" class="form-control"  value="<%= xiuXue.getSqdate() %>">
+                                            <input id="sqdate"  type="date"  name="sqdate" class="form-control"  value="<%= xiuXue.getSqdate() %>">
 
                                         </div>
                                         <div class="form-group">
                                             <label>复学年月日</label>
-                                            <input id="fxdate"  name="fxdate" class="form-control"  value="<%= xiuXue.getFxdate() %>">
+                                            <input id="fxdate"  type="date"  name="fxdate" class="form-control"  value="<%= xiuXue.getFxdate() %>">
 
                                         </div>
                                         <div class="form-group">
@@ -201,7 +203,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label>审核状态</label>
-                                            <input id="shzt"  name="shzt" class="form-control"  value="<%= xiuXue.getShzt() %>">
+                                            <select id="shzt"  name="shzt" class="form-control">
+                                                <option <%if(xiuXue.getShzt().equals("待审核") ) out.print("selected=\"selected\""); %> value="待审核">待审核</option>
+                                                <option  <%if(xiuXue.getShzt().equals("审核通过") ) out.print("selected=\"selected\""); %>  value="审核通过">审核通过</option>
+                                                <option <%if(xiuXue.getShzt().equals("审核不通过") ) out.print("selected=\"selected\""); %> value="审核不通过">审核不通过</option>
+                                            </select>
+
 
                                         </div>
 

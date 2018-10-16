@@ -49,7 +49,7 @@
     public Jiangji getData(int sno){
 
         JiangjiService fuXueService = new JiangjiServiceImpl();
-        Jiangji fuXue=fuXueService.get(sno);
+        Jiangji fuXue=fuXueService.getSingle(sno);
 
         return fuXue;
     }
@@ -67,7 +67,7 @@
 
         }
         //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
-        response.sendRedirect("teacher_table_jiangji_info.jsp?sno="+fu.getSno());
+        response.sendRedirect("teacher_jiangji.jsp");
 
     }else{
         request.setCharacterEncoding("utf-8");
@@ -165,7 +165,7 @@
                                 <div class="col-lg-12">
                                     <form role="form" action="teacher_table_jiangji_info.jsp" method="post">
 
-
+                                        <input id="jjno" name="jjno" class="form-control"  value="<%= jiangji.getJjno() %>">
 
                                         <div class="form-group">
                                             <label>学号</label>
@@ -178,7 +178,11 @@
                                             <input id="sname"  name="sname" class="form-control"  value="<%= jiangji.getSname() %>">
 
                                         </div>
+                                        <div class="form-group">
+                                            <label>申请日期</label>
+                                            <input id="sqdate" type="date"  name="sqdate" class="form-control"  value="<%= jiangji.getSqdate() %>">
 
+                                        </div>
                                         <div class="form-group">
                                             <label>审核人</label>
                                             <input id="shren"  name="shren" class="form-control"  value="<%= jiangji.getShren() %>">
@@ -191,8 +195,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>审核状态</label>
-                                            <input id="shzt"  name="shzt" class="form-control"  value="<%= jiangji.getShzt() %>">
-
+                                            <select id="shzt"  name="shzt" class="form-control">
+                                                <option <%if(jiangji.getShzt().equals("待审核") ) out.print("selected=\"selected\""); %> value="待审核">待审核</option>
+                                                <option  <%if(jiangji.getShzt().equals("审核通过") ) out.print("selected=\"selected\""); %>  value="审核通过">审核通过</option>
+                                                <option <%if(jiangji.getShzt().equals("审核不通过") ) out.print("selected=\"selected\""); %> value="审核不通过">审核不通过</option>
+                                            </select>
                                         </div>
 
                                         <button  type="submit" class="btn btn-primary">保存</button>

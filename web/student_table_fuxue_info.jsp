@@ -6,7 +6,9 @@
 <%@ page import="service.impl.FuXueServiceImpl" %>
 <%@ page import="domain.Jiangji" %>
 <%@ page import="service.JiangjiService" %>
-<%@ page import="service.impl.JiangjiServiceImpl" %><%--
+<%@ page import="service.impl.JiangjiServiceImpl" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: Li
   Date: 2018/10/13 0013
@@ -50,7 +52,7 @@
     public  FuXue getData(int sno){
 
         FuXueService fuXueService = new  FuXueServiceImpl();
-        FuXue fuXue= fuXueService.get(sno);
+        FuXue fuXue= fuXueService.getSingle(sno);
 
         return fuXue;
     }
@@ -65,18 +67,22 @@
         FuXueService fuXueService = new FuXueServiceImpl();
         if (fu!=null){
 
-            fuXueService.applyFuXue(fu);
+           if(fuXueService.applyFuXue(fu)) {
+               response.sendRedirect("student_fuxue.jsp");
+           }else {
+               out.print("<script>alert(\"你已经复学了！\");</script>");
+           }
 
 
         }
         //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
-        response.sendRedirect("student_fuxue.jsp");
+
 
     }else{
         request.setCharacterEncoding("utf-8");
-        int sno = Integer.parseInt(request.getParameter("sno"));
+        int sno = Integer.parseInt(String.valueOf(session.getAttribute("sno")));
        jiangji = getData(sno);
-       sno2= Integer.parseInt(request.getParameter("sno"));
+       sno2= Integer.parseInt(String.valueOf(session.getAttribute("sno")));
 
     }
 
@@ -173,25 +179,30 @@
 
 
                                         <div class="form-group">
-                                            <label>学号</label>
-                                            <input id="sno" name="sno" class="form-control" >
+
+                                            <input id="sno" type="hidden" name="sno" class="form-control" value="<%=session.getAttribute("sno")%>">
 
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>学生姓名</label>
-                                            <input id="sname"  name="sname" class="form-control"  value="">
-
-                                        </div>
-
+                                        <%
+                                            Date d = new Date();
+                                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                            String now = df.format(d);
+                                        %>
                                         <div class="form-group">
                                             <label>申请原因</label>
                                             <input id="sqyy"  name="sqyy" class="form-control"  value="">
 
                                         </div>
+
                                         <div class="form-group">
                                             <label>申请日期</label>
-                                            <input id="sqdate"  name="sqdate" class="form-control"  value="">
+                                            <input id="sqdate" type="date" name="sqdate" class="form-control"  value="<%=now%>">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>复学日期</label>
+                                            <input id="fxdate" type="date" name="fxdate" class="form-control"  value="">
 
                                         </div>
 

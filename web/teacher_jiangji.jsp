@@ -4,7 +4,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="service.JiangjiService" %>
 <%@ page import="service.impl.JiangjiServiceImpl" %>
-<%@ page import="domain.Jiangji" %><%--
+<%@ page import="domain.Jiangji" %>
+<%@ page import="service.StuService" %>
+<%@ page import="service.impl.StuServiceImpl" %>
+<%@ page import="domain.Student" %><%--
   Created by IntelliJ IDEA.
   User: Li
   Date: 2018/10/13 0013
@@ -115,7 +118,7 @@
                     <!--   Kitchen Sink -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            数据
+                         申请降级
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -125,6 +128,8 @@
 
                                         <th>学号</th>
                                         <th>学生</th>
+                                        <th>申请原因</th>
+                                        <th>申请日期</th>
 
                                         <th>审核状态</th>
 
@@ -132,15 +137,16 @@
                                     </thead>
                                     <tbody>
                                     <%
-
+                                        int tno = (int) session.getAttribute("tno");
                                         JiangjiService jiangjiService = new JiangjiServiceImpl();
-                                        List<Jiangji> list = jiangjiService.getAll();
+                                        List<Jiangji> list = jiangjiService.getAll(tno);
                                         for (Jiangji item : list) {
                                             //  System.out.println(item.toString());
                                             out.print(" <tr>\n" +
-                                                    "                                        <td><a href=\"teacher_table_jiangji_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
+                                                    "                                        <td><a href=\"teacher_table_jiangji_info.jsp?sno="+item.getJjno()+"\">"+item.getJjno()+"</a></td>\n" +
                                                     "                                        <td>"+item.getSname()+"</td>\n" +
-
+                                                    "                                        <td>"+item.getSqyy()+"</td>\n" +
+                                                    "                                        <td>"+item.getSqdate()+"</td>\n" +
                                                     "                                        <td>"+item.getShzt()+"</td>\n" +
                                                     "                                    </tr>");
 
@@ -155,6 +161,18 @@
                 </div>
             </div>
             <!-- /. ROW  -->
+
+
+
+<form action="rqjiangji.jsp" method="post" name="sss" id="sss">
+
+    <input id="sno" type="hidden"  name="sno" class="form-control" value="" >
+    <input id="shzt" type="hidden"  name="sno" class="form-control" value="审核通过" >
+    <input id="sqyy" type="hidden"  name="shren" class="form-control" value="laoshi" >
+
+
+</form>
+
 
 
             <footer><p>后台·管理</p>

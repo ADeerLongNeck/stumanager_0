@@ -125,7 +125,7 @@
                                     <thead>
                                     <tr>
 
-                                        <th>学号</th>
+                                        <th>申请复学编号</th>
                                         <th>学生</th>
                                         <th>申请原因</th>
                                         <th>审核状态</th>
@@ -136,18 +136,19 @@
                                     <%
                                         int sno = (int) session.getAttribute("sno");
                                         FuXueService fuXueService = new FuXueServiceImpl();
-                                        FuXue item = fuXueService.get(sno);
-if(item!=null){
+                                        List<FuXue> list = fuXueService.get(sno);
+                                        for (FuXue item : list) {
+                                            if (item != null) {
 
-    //  System.out.println(item.toString());
-    out.print(" <tr>\n" +
-            "                                        <td><a href=\"teacher_table_fuxue_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
-            "                                        <td>"+item.getSname()+"</td>\n" +
-            "                                        <td>"+item.getSqyy()+"</td>\n" +
-            "                                        <td>"+item.getShzt()+"</td>\n" +
-            "                                    </tr>");
-}
-
+                                                //  System.out.println(item.toString());
+                                                out.print(" <tr>\n" +
+                                                        "                                        <td><a >" + item.getFxno() + "</a></td>\n" +
+                                                        "                                        <td>" + item.getSname() + "</td>\n" +
+                                                        "                                        <td>" + item.getSqyy() + "</td>\n" +
+                                                        "                                        <td>" + item.getShzt() + "</td>\n" +
+                                                        "                                    </tr>");
+                                            }
+                                        }
 
                                     %>
                                     </tbody>
@@ -155,14 +156,13 @@ if(item!=null){
                             </div>
                         </div>
                     </div>
+
                     <!-- End  Kitchen Sink -->
                     <%
 
-                        FuXueService jiangjiService2 = new FuXueServiceImpl();
-                        FuXue item2 = jiangjiService2.get(sno);
-                        if (item2==null){
-                            out.print("   <a href=\"http://localhost:8080/student_table_fuxue_info.jsp?sno=1\" class=\"btn btn-primary\">申请降级</a>");
-                        }
+
+                            out.print(" <a href=\"http://localhost:8080/student_table_fuxue_info.jsp\"   class=\"btn btn-primary\">申请复学</a>   ");
+
 
 
                     %>

@@ -1,7 +1,4 @@
-import domain.FuXue;
-import domain.Student;
-import domain.Teacher;
-import domain.XiuXue;
+import domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -78,13 +75,19 @@ public class test {
 //        xiuXue.setSno(154);
 //        service.applyXiuxue(xiuXue);
 
-        XiuXue xiuXue = new XiuXue();
-        xiuXue.setXxno(5);
-        xiuXue.setSname("shabi");
-        xiuXue.setShzt("审核通过");
-        XiuXueService service = new XiuXueServiceImpl();
-        service.shenhe(xiuXue);
+//        XiuXue xiuXue = new XiuXue();
+//        xiuXue.setXxno(5);
+//        xiuXue.setSname("shabi");
+//        xiuXue.setShzt("审核通过");
+//        XiuXueService service = new XiuXueServiceImpl();
+//        service.shenhe(xiuXue);
 
+        Jiangji jiangji = new Jiangji();
+        jiangji.setJjno(6);
+        jiangji.setSno(5);
+        jiangji.setShzt("审核通过");
+        JiangjiService service = new JiangjiServiceImpl();
+        service.shenhe(jiangji);
 
     }
 

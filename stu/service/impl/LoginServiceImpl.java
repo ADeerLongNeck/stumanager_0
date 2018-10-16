@@ -18,7 +18,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public boolean login(User user) {
-        String pwd = loginDao.login(user.getId());
+        String pwd = loginDao.login(user.getId(),user.getSf());
         if (user.getPwd().equals(pwd)) return true;
         return false;
     }

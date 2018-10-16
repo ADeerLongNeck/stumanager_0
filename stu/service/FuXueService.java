@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FuXueService {
 
-    void applyFuXue(FuXue fuXue);
+    boolean applyFuXue(FuXue fuXue);
 
     void shenhe(FuXue fuXue);
 

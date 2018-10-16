@@ -149,8 +149,11 @@
 
                                         <div class="form-group">
                                             <label>所属学院</label>
-                                            <input id="ssxy"  name="ssxy" class="form-control">
-
+                                                <select id="ssxy"  name="ssxy" class="form-control">
+                                                    <option value="信息学院">信息学院</option>
+                                                    <option value="土建学院">土建学院</option>
+                                                    <option value="外国语学院">外国语学院</option>
+                                                </select>
                                         </div>
 
                                         <button  type="submit" class="btn btn-primary">保存</button>

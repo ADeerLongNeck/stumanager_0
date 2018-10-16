@@ -14,7 +14,7 @@ public interface JiangjiService {
 
 
 
-    void applyJiangji(Jiangji jiangji);
+    boolean applyJiangji(Jiangji jiangji);
 
     void requireJiangji(Jiangji jiangji);
 

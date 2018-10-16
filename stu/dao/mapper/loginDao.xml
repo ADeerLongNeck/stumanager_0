@@ -27,7 +27,7 @@
         <include refid="select"/>
     </select>
 
-    <select id="login" parameterType="int" resultType="java.lang.String">
-        select Pwd from userinfo where Id = #{Id}
+    <select id="login" resultType="java.lang.String">
+        select Pwd from userinfo where Id = #{Id} and Sf = #{sf}
     </select>
 </mapper>

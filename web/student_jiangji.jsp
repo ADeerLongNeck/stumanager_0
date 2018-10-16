@@ -138,20 +138,20 @@
                                     <%
                                         int sno = (int) session.getAttribute("sno");
                                         JiangjiService jiangjiService = new JiangjiServiceImpl();
-                                        Jiangji item = jiangjiService.get(sno);
-                                        if(item!=null){
-                                            //  System.out.println(item.toString());
-                                            out.print(" <tr>\n" +
-                                                    "                                        <td><a href=\"student_table_jiangji_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
-                                                    "                                        <td>"+item.getSname()+"</td>\n" +
+                                        List<Jiangji> list = jiangjiService.get(sno);
+                                        for (Jiangji item : list) {
+                                            if (item != null) {
+                                                //  System.out.println(item.toString());
+                                                out.print(" <tr>\n" +
+                                                        "                                        <td><a href=\"student_table_jiangji_info.jsp?sno=" + item.getSno() + "\">" + item.getSno() + "</a></td>\n" +
+                                                        "                                        <td>" + item.getSname() + "</td>\n" +
 
-                                                    "                                        <td>"+item.getShzt()+"</td>\n" +
-                                                    "                                    </tr>");
+                                                        "                                        <td>" + item.getShzt() + "</td>\n" +
+                                                        "                                    </tr>");
+                                            }
+
+
                                         }
-
-
-
-
                                     %>
                                     </tbody>
                                 </table>
@@ -160,11 +160,9 @@
                     </div>
             <%
 
-                JiangjiService jiangjiService2 = new JiangjiServiceImpl();
-                Jiangji item2 = jiangjiService.get(sno);
-                if (item2==null){
+
                     out.print("   <a href=\"http://localhost:8080/student_table_jiangji_info.jsp?sno=1\" class=\"btn btn-primary\">申请降级</a>");
-                }
+
 
 
             %>

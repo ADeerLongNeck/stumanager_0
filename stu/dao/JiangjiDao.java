@@ -17,5 +17,5 @@ public interface JiangjiDao {
 
     List<Jiangji> get(@Param("sno")int sno);
 
-    Jiangji getSingle(@Param("jjno") int jjno);
+    Jiangji getSingle(@Param("jjno")int jjno);
 }

@@ -132,13 +132,14 @@
                                     </thead>
                                     <tbody>
                                     <%
+                                        int tno = (int) session.getAttribute("tno");
 
                                         FuXueService fuXueService = new FuXueServiceImpl();
-                                        List<FuXue> list = fuXueService.getAll();
+                                        List<FuXue> list = fuXueService.getAll(tno);
                                         for (FuXue item : list) {
                                             //  System.out.println(item.toString());
                                             out.print(" <tr>\n" +
-                                                    "                                        <td><a href=\"teacher_table_fuxue_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
+                                                    "                                        <td><a href=\"teacher_table_fuxue_info.jsp?sno="+item.getFxno()+"\">"+item.getFxno()+"</a></td>\n" +
                                                     "                                        <td>"+item.getSname()+"</td>\n" +
                                                     "                                        <td>"+item.getSqyy()+"</td>\n" +
                                                     "                                        <td>"+item.getShzt()+"</td>\n" +

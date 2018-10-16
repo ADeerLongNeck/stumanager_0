@@ -46,7 +46,7 @@
     public FuXue getData(int sno){
 
         FuXueService fuXueService = new FuXueServiceImpl();
-       FuXue fuXue=fuXueService.get(sno);
+       FuXue fuXue=fuXueService.getSingle(sno);
 
         return fuXue;
     }
@@ -64,12 +64,12 @@
 
         }
         //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
-        response.sendRedirect("teacher_table_fuxue_info.jsp?sno="+fu.getSno());
+        response.sendRedirect("teacher_table_fuxue_info.jsp?sno="+fu.getFxno());
 
     }else{
         request.setCharacterEncoding("utf-8");
-        int sno = Integer.parseInt(request.getParameter("sno"));
-       fuXue = getData(sno);
+         int sno = Integer.parseInt(request.getParameter("sno"));
+         fuXue = getData(sno);
 
     }
 
@@ -166,7 +166,7 @@
                                     <form role="form" action="teacher_table_fuxue_info.jsp" method="post">
 
 
-
+                                        <input id="fxno" name="fxno" class="form-control" type="hidden"  value="<%= fuXue.getFxno() %>">
                                         <div class="form-group">
                                             <label>学号</label>
                                             <input id="sno" name="sno" class="form-control"  value="<%= fuXue.getSno() %>">
@@ -175,7 +175,7 @@
 
                                         <div class="form-group">
                                             <label>学生姓名</label>
-                                            <input id="sname"  name="sname" class="form-control"  value="<%= fuXue.getSno() %>">
+                                            <input id="sname"  name="sname" class="form-control"  value="<%= fuXue.getSname() %>">
 
                                         </div>
                                         <div class="form-group">
@@ -185,12 +185,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label>申请年月日</label>
-                                            <input id="sqdate"  name="sqdate" class="form-control"  value="<%= fuXue.getSqdate() %>">
+                                            <input id="sqdate" type="date"  name="sqdate" class="form-control"  value="<%= fuXue.getSqdate() %>">
 
                                         </div>
                                         <div class="form-group">
                                             <label>复学年月日</label>
-                                            <input id="fxdate"  name="fxdate" class="form-control"  value="<%= fuXue.getFxdate() %>">
+                                            <input id="fxdate"  type="date"  name="fxdate" class="form-control"  value="<%= fuXue.getFxdate() %>">
 
                                         </div>
                                         <div class="form-group">
@@ -205,8 +205,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label>审核状态</label>
-                                            <input id="shzt"  name="shzt" class="form-control"  value="<%= fuXue.getShzt() %>">
 
+                                            <select id="shzt"  name="shzt" class="form-control">
+                                                <option <%if(fuXue.getShzt().equals("待审核") ) out.print("selected=\"selected\""); %> value="待审核">待审核</option>
+                                                <option  <%if(fuXue.getShzt().equals("审核通过") ) out.print("selected=\"selected\""); %>  value="审核通过">审核通过</option>
+                                                <option <%if(fuXue.getShzt().equals("审核不通过") ) out.print("selected=\"selected\""); %> value="审核不通过">审核不通过</option>
+                                            </select>
                                         </div>
 
                                         <button  type="submit" class="btn btn-primary">保存</button>

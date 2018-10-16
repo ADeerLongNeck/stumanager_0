@@ -19,12 +19,24 @@ public class JiangjiServiceImpl implements JiangjiService {
     TeaDao teaDao = sqlSession.getMapper(TeaDao.class);
 
     @Override
-    public void applyJiangji(Jiangji jiangji) {
+    public boolean applyJiangji(Jiangji jiangji) {
         Student student = stuDao.getSingleStudent(jiangji.getSno());
-        jiangji.setSname(student.getSname());
-        jiangji.setXy(student.getSxy());
-        jiangjiDao.add(jiangji);
-        sqlSession.commit();
+        if (student.getNj() != 1){
+            List<Jiangji> list = jiangjiDao.get(jiangji.getSno());
+            for (Jiangji item:list) {
+                if (item.getShzt().equals("待审核"))
+                    return false;
+            }
+
+            jiangji.setXy(student.getSxy());
+            jiangji.setSname(student.getSname());
+            jiangjiDao.add(jiangji);
+            sqlSession.commit();
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     @Override
@@ -36,10 +48,13 @@ public class JiangjiServiceImpl implements JiangjiService {
     @Override
     public void shenhe(Jiangji jiangji) {
         Student student = stuDao.getSingleStudent(jiangji.getSno());
+        jiangji.setSname(student.getSname());
+        jiangji.setXy(student.getSxy());
         if (jiangji.getShzt().equals("审核通过")) {
             student.setNj(student.getNj() - 1);
             stuDao.updateStudent(student);
         }
+        jiangjiDao.update(jiangji);
         sqlSession.commit();
     }
 
@@ -67,7 +82,9 @@ public class JiangjiServiceImpl implements JiangjiService {
 
     @Override
     public List<Jiangji> get(int sno) {
+
         return jiangjiDao.get(sno);
+
     }
 
     @Override

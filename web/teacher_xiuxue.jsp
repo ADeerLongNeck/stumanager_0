@@ -130,13 +130,14 @@
                                     </thead>
                                     <tbody>
                                     <%
+                                        int tno = (int) session.getAttribute("tno");
 
                                         XiuXueService xiuXueService = new XiuXueServiceImpl();
-                                        List<XiuXue> list = xiuXueService.getAll();
+                                        List<XiuXue> list = xiuXueService.getAll(tno);
                                         for (XiuXue item : list) {
                                             //  System.out.println(item.toString());
                                             out.print(" <tr>\n" +
-                                                    "                                        <td><a href=\"teacher_table_xiuxue_info.jsp?sno="+item.getSno()+"\">"+item.getSno()+"</a></td>\n" +
+                                                    "                                        <td><a href=\"teacher_table_xiuxue_info.jsp?sno="+item.getXxno()+"\">"+item.getSno()+"</a></td>\n" +
                                                     "                                        <td>"+item.getSname()+"</td>\n" +
                                                     "                                        <td>"+item.getSqyy()+"</td>\n" +
                                                     "                                        <td>"+item.getShzt()+"</td>\n" +

@@ -178,7 +178,12 @@
 
                                         <div class="form-group">
                                             <label>所属学院</label>
-                                            <input id="ssxy"  name="ssxy" class="form-control" value="<%= teacher.getSsxy() %>">
+
+                                            <select id="ssxy"  name="ssxy" class="form-control">
+                                                <option <%if(teacher.getSsxy().equals("信息学院")) out.print("selected=\"selected\""); %> value="信息学院">信息学院</option>
+                                                <option <%if(teacher.getSsxy().equals("土建学院")) out.print("selected=\"selected\""); %>  value="土建学院">土建学院</option>
+                                                <option <%if(teacher.getSsxy().equals("外国语学院")) out.print("selected=\"selected\""); %>  value="外国语学院">外国语学院</option>
+                                            </select>
 
                                         </div>
 

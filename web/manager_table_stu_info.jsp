@@ -154,7 +154,7 @@ public void pp(){
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" method="post" action="manager_table_stu_info.jsp">
+                                    <form role="form" method="post" action="manager_table_stu_info.jsp" onsubmit="return check(this)">
 
                                         <div class="form-group">
                                             <label>学号</label>
@@ -172,23 +172,28 @@ public void pp(){
 
                                         </div>
                                         <div class="form-group">
+                                            <label>年级</label>
+                                            <input id="nj" name="nj" class="form-control" value="<%=stu.getNj()%>">
+
+                                        </div>
+                                        <div class="form-group">
                                             <label>学院</label>
                                             <input id="sxy"  name="sxy" class="form-control" value="<%=stu.getSxy()%>">
 
                                         </div>
                                         <div class="form-group">
                                             <label>出生年月日</label>
-                                            <input id="csdate" name="csdate"  class="form-control" value="<%=stu.getCsdate()%>">
+                                            <input id="csdate"  type = "date"  name="csdate"  class="form-control" value="<%=stu.getCsdate()%>">
 
                                         </div>
                                         <div class="form-group">
                                             <label>入学年份</label>
-                                            <input id="rxdate" name="rxdate"  class="form-control" value="<%=stu.getRxdate()%>">
+                                            <input id="rxdate" type = "date" name="rxdate"  class="form-control"  value="<%=stu.getRxdate()%>">
 
                                         </div>
                                         <div class="form-group">
                                             <label>毕业年份</label>
-                                            <input id="bydate" name="bydate"  class="form-control" value="<%=stu.getBydate()%>">
+                                            <input id="bydate" name="bydate"   type = "date"   class="form-control" value="<%=stu.getBydate()%>">
 
                                         </div>
                                         <div class="form-group">
@@ -213,9 +218,14 @@ public void pp(){
                                         </div>
                                         <div class="form-group">
                                             <label>性别</label>
-                                            <input id="sex"  name="sex" class="form-control" value="<%=stu.getSex()%>">
+
+                                            <select id="sex"  name="sex" class="form-control" >
+                                                <option <% if (stu.getSex().equals("男")) out.print("selected=\"selected\""); %> value="男">男</option>
+                                                <option <% if (stu.getSex().equals("女")) out.print("selected=\"selected\""); %>   value="女">女</option>
+                                            </select>
 
                                         </div>
+
                                         <div class="form-group">
                                             <label>身份证号</label>
                                             <input id="sfzno" name="sfzno"  class="form-control" value="<%=stu.getSfzno()%>">
@@ -231,7 +241,7 @@ public void pp(){
                                             <input id="extra"  name="extra" class="form-control" value="<%=stu.getExtra()%>">
 
                                         </div>
-                                        <BUTTON class="btn btn-primary" type="submit">保存</BUTTON>
+                                        <BUTTON class="btn btn-primary" type="submit" >保存</BUTTON>
                                         <a class="btn btn-danger" href="del.jsp?no=<%=stu.getSno()%>&table=stu">删除</a>
 
                                     </form>
@@ -280,6 +290,23 @@ public void pp(){
 <!-- Custom Js -->
 <script src="assets/js/custom-scripts.js"></script>
 
+<script type="text/javascript">
+    function check(form) {
+        if(form.phone.value.length!=11){
+            alert("电话号为11");
+            return false;
+        }
+        var oDate1 = new Date(form.rxdate.value.replace(/\-/g, "\/"));
+        var oDate2 = new Date(form.bydate.value.replace(/\-/g, "\/"));
+        if(oDate1>oDate2){
+        alert("入学时间不得大于毕业时间");
+        return false;
+        }
+
+    }
+
+
+</script>
 
 </body>
 

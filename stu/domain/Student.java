@@ -38,6 +38,10 @@ public class Student {
 
     private String xiuxue;
 
+    public Student() {
+        this.xiuxue = "no";
+    }
+
     public int getSno() {
         return sno;
     }

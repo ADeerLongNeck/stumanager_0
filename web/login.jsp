@@ -21,7 +21,7 @@
             response.sendRedirect("student_xiuxue.jsp");
         }
         if(loginService.login(user1)&&user1.getSf().equals("2")){
-
+            session.setAttribute("tno",user1.getId());
             response.sendRedirect("teacher_xiuxue.jsp");
         }
         if(loginService.login(user1)&&user1.getSf().equals("3")){

@@ -6,7 +6,9 @@
 <%@ page import="service.impl.FuXueServiceImpl" %>
 <%@ page import="domain.Jiangji" %>
 <%@ page import="service.JiangjiService" %>
-<%@ page import="service.impl.JiangjiServiceImpl" %><%--
+<%@ page import="service.impl.JiangjiServiceImpl" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: Li
   Date: 2018/10/13 0013
@@ -50,7 +52,7 @@
     public Jiangji getData(int sno){
 
         JiangjiService fuXueService = new JiangjiServiceImpl();
-        Jiangji fuXue=fuXueService.get(sno);
+        Jiangji fuXue=fuXueService.getSingle(sno);
 
         return fuXue;
     }
@@ -65,11 +67,17 @@
         JiangjiService fuXueService = new JiangjiServiceImpl();
         if (fu!=null){
 
-           fuXueService.applyJiangji(fu);
+        if(  fuXueService.applyJiangji(fu)){
+            response.sendRedirect("student_jiangji.jsp");
+        }else {
+            out.print("<script>\n" +
+                    "    alert(\"你的申请已经在审核中，或你已经是一年级，不可申请！\");\n" +
+                    "</script>");
+        }
 
         }
         //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
-        response.sendRedirect("student_jiangji.jsp");
+      //  response.sendRedirect("student_jiangji.jsp");
 
     }else{
         request.setCharacterEncoding("utf-8");
@@ -174,14 +182,14 @@
 
 
                                         <div class="form-group">
-                                            <label>学号</label>
-                                            <input id="sno" name="sno" class="form-control" >
+
+                                            <input id="sno" type="hidden"  name="sno" class="form-control" value="<%=session.getAttribute("sno")%>" >
 
                                         </div>
 
                                         <div class="form-group">
-                                            <label>学生姓名</label>
-                                            <input id="sname"  name="sname" class="form-control"  value="">
+                                            <label>申请原因</label>
+                                            <input id="sqyy"  name="sqyy" class="form-control"  value=""  >
 
                                         </div>
 
@@ -192,7 +200,18 @@
 
                                         </div>
 
-                                        <button  type="submit" class="btn btn-primary">保存</button>
+                                        <%
+                                            Date d = new Date();
+                                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                            String now = df.format(d);
+                                        %>
+                                        <div class="form-group">
+
+                                            <input id="sqdate"  name="sqdate" class="form-control"  value="<%=now%>"  type="hidden">
+
+                                        </div>
+
+                                        <button  type="submit" class="btn btn-primary">提交申请</button>
 
                                     </form>
                                 </div>

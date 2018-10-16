@@ -144,11 +144,16 @@ if (request.getMethod().equals("POST")){
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="addstu.jsp" method="post">
+                                    <form role="form" action="addstu.jsp" method="post" onsubmit="return check(this)">
 
                                         <div class="form-group">
                                             <label>学号</label>
                                             <input id="sno" name="sno" class="form-control">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>年级</label>
+                                            <input id="nj" name="nj" class="form-control">
 
                                         </div>
                                         <div class="form-group">
@@ -163,22 +168,27 @@ if (request.getMethod().equals("POST")){
                                         </div>
                                         <div class="form-group">
                                             <label>学院</label>
-                                            <input id="sxy"  name="sxy" class="form-control">
+
+                                             <select id="sxy"  name="sxy" class="form-control">
+                                                <option value="信息学院">信息学院</option>
+                                                <option value="土建学院">土建学院</option>
+                                                <option value="外国语学院">外国语学院</option>
+                                            </select>
 
                                         </div>
                                         <div class="form-group">
                                             <label>出生年月日</label>
-                                            <input id="csdate" name="csdate"  class="form-control">
+                                            <input id="csdate" type="date"  name="csdate"  class="form-control">
 
                                         </div>
                                         <div class="form-group">
                                             <label>入学年份</label>
-                                            <input id="rxdate" name="rxdate"  class="form-control">
+                                            <input id="rxdate" type="date" name="rxdate"  class="form-control">
 
                                         </div>
                                         <div class="form-group">
                                             <label>毕业年份</label>
-                                            <input id="bydate" name="bydate"  class="form-control">
+                                            <input id="bydate" name="bydate" type="date"  class="form-control">
 
                                         </div>
                                         <div class="form-group">
@@ -203,7 +213,11 @@ if (request.getMethod().equals("POST")){
                                         </div>
                                         <div class="form-group">
                                             <label>性别</label>
-                                            <input id="sex"  name="sex" class="form-control">
+
+                                            <select  id="sex"  name="sex" class="form-control">
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                            </select>
 
                                         </div>
                                         <div class="form-group">
@@ -271,6 +285,27 @@ if (request.getMethod().equals("POST")){
 <script src="assets/js/custom-scripts.js"></script>
 
 
+<script type="text/javascript">
+    function check(form) {
+        if(form.phone.value.length!=11){
+            alert("电话号为11");
+            return false;
+        }
+        var oDate1 = new Date(form.rxdate.value.replace(/\-/g, "\/"));
+        var oDate2 = new Date(form.bydate.value.replace(/\-/g, "\/"));
+        if(oDate1>oDate2){
+            alert("入学时间不得大于毕业时间");
+            return false;
+        }
+        if(form.sname.value==''||form.sno.value==''||form.szy.value==''||form.csdate.value==''||form.rxdate.value==''||form.bydate.value==''||form.zzmm.value==''||form.jtzz.value==''||form.mz.value==''||form.jhr.value==''||form.sex.value==''||form.sfzno.value==''||form.phone.value==''){
+            alert("信息请填写完整");
+            return false;
+        }
+
+    }
+
+
+</script>
 </body>
 
 </html>

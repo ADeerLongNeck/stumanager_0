@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface LoginDao {
 
-    String login(@Param("Id") int id);
+    String login(@Param("Id") int id,@Param("sf")String sf);
 
     void register(User user);
 

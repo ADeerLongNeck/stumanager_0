@@ -6,7 +6,9 @@
 <%@ page import="service.impl.FuXueServiceImpl" %>
 <%@ page import="domain.Jiangji" %>
 <%@ page import="service.JiangjiService" %>
-<%@ page import="service.impl.JiangjiServiceImpl" %><%--
+<%@ page import="service.impl.JiangjiServiceImpl" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: Li
   Date: 2018/10/13 0013
@@ -46,14 +48,14 @@
 <%!
     XiuXue jiangji;
     int sno2;
-
-    public  XiuXue getData(int sno){
-
-        XiuXueService fuXueService = new  XiuXueServiceImpl();
-        XiuXue fuXue= fuXueService.get(sno);
-
-        return fuXue;
-    }
+//
+//    public  XiuXue getData(int sno){
+//
+//        XiuXueService fuXueService = new  XiuXueServiceImpl();
+//        XiuXue fuXue= fuXueService.get(sno);
+//
+//        return fuXue;
+//    }
     public void pp(){
         System.out.println("222222222222222222222222222222222222");
     }
@@ -64,18 +66,21 @@
         request.setCharacterEncoding("utf-8");
         XiuXueService fuXueService = new XiuXueServiceImpl();
         if (fu!=null){
-            fuXueService.applyXiuxue(fu);
-
-
-
+            fu.setSno(Integer.parseInt(String.valueOf(session.getAttribute("sno"))));
+            if(fuXueService.applyXiuxue(fu)){
+                response.sendRedirect("student_xiuxue.jsp");
+            }
+            else out.print("<script>\n" +
+                    "    alert(\"已经在休学状态中，不可申请！\");\n" +
+                    "</script>");
         }
         //   request.getRequestDispatcher("manager_table_stu_info.jsp?sno="+stu2.getSno()).forward(request, response);
-        response.sendRedirect("student_xiuxue.jsp");
+
 
     }else{
         request.setCharacterEncoding("utf-8");
         int sno = Integer.parseInt(request.getParameter("sno"));
-       jiangji = getData(sno);
+     //  jiangji = getData(sno);
        sno2= Integer.parseInt(request.getParameter("sno"));
 
     }
@@ -175,25 +180,30 @@
 
                                         <div class="form-group">
                                             <label>学号</label>
-                                            <input id="sno" name="sno" class="form-control" >
+                                            <input id="sno" disabled="disabled" name="sno" class="form-control" value="<%=session.getAttribute("sno")%>" >
 
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>学生姓名</label>
-                                            <input id="sname"  name="sname" class="form-control"  value="">
-
-                                        </div>
 
                                         <div class="form-group">
                                             <label>申请原因</label>
                                             <input id="sqyy"  name="sqyy" class="form-control"  value="">
 
                                         </div>
+                                        <%
+                                            Date d = new Date();
+                                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                            String now = df.format(d);
+                                        %>
                                         <div class="form-group">
-                                            <label>申请日期</label>
-                                            <input id="sqdate"  name="sqdate" class="form-control"  value="">
 
+                                            <input id="sqdate" type="hidden"    name="sqdate" class="form-control"  value="<%=now%>">
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>复学日期</label>
+                                            <input id="fxdate" type="date"  name="fxdate" class="form-control"  value="">
                                         </div>
 
                                         <div class="form-group">
@@ -201,7 +211,8 @@
                                             <input id="shzt"  name="shzt" class="form-control"  value="待审核"  type="hidden">
 
                                         </div>
-
+                                        <input id="shren"  name="shren" class="form-control"  value="无"  type="hidden">
+                                        <input id="shbz"  name="shbz" class="form-control"  value="无"  type="hidden">
                                         <button  type="submit" class="btn btn-primary">保存</button>
 
                                     </form>
